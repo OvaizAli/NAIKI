@@ -166,7 +166,7 @@ footer.light .footer-copyright {
 
 .widget li a,
 p a {
-    color: red;
+    color:  #1c87e5;
 }
 
 .widget li a:hover,
@@ -225,7 +225,7 @@ ul.social-footer2 li {
 
 .fa:hover {
     color: white!important;
-    background-color: red;
+    background-color:  #1c87e5;
 }
 
 

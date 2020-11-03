@@ -326,7 +326,20 @@ ul.social-footer2 li a {
 }
   /* Extra small devices (phones, 600px and down) */
 @media only screen and (max-width: 600px) {
-
+    #scrollToTopBtn {
+        background-color: white;
+        border: none;
+        /* border-radius: 50%; */
+        color: white;
+        cursor: pointer;
+        font-size: 20px;
+        line-height: 50px;
+        width: 50px;
+        float: right;
+        position: relative;
+        right: 10px;
+        top:700px;
+      }
   }
 
 /* Small devices (portrait tablets and large phones, 600px and up) */

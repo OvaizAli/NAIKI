@@ -33,9 +33,12 @@ input[type=text] {
     color: black;
   }
 
-  .carousel-inner > img{
+.carousel-inner > img{
       width: 100%;
   }
+.stats-section{
+    background-color:  #1c87e5;
+}
 /* Main Footer */
 
 footer .main-footer {

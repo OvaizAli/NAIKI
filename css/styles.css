@@ -289,12 +289,21 @@ ul.social-footer2 li a {
     text-align: center;
 }
 
-.back-to-top {
-    position: fixed;
-    bottom: 25px;
-    right: 25px;
-    display: none;
-}
+#scrollToTopBtn {
+    background-color: white;
+    border: none;
+    /* border-radius: 50%; */
+    color: white;
+    cursor: pointer;
+    font-size: 20px;
+    line-height: 50px;
+    width: 50px;
+    float: right;
+    position: relative;
+    right: 10px;
+    top:200px;
+  }
+
   
 
 @media screen and (max-width: 992px) {

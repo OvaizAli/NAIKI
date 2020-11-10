@@ -15,10 +15,11 @@
 </head>
 
 <body>
+  <!------------------------------------------------------------------- Nav bar ---------------------------------------------------------------->
   <div class="headline">
     <i class="fa fa-handshake-o" aria-hidden="true"></i> &nbsp;Millions of people's life has changed, Million more are awaiting for your donations
   </div>
-  <nav class="navbar navbar-expand-lg ">
+  <nav class="navbar navbar-expand-lg">
     <a class="navbar-brand" href="#">
       <img src="./images/Logo.png" alt="" class="logo">
       <!-- <strong>Buddy's Mart</strong> -->
@@ -33,7 +34,12 @@
             <input type="text" name="search" placeholder="&#xF002; Search..." style="font-family:Arial, FontAwesome" />
         </form>
         <li class="nav-item">
-          <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true" style="color:#e6e6ff"></i> Sign in / Sign up <span class="sr-only"></span></a>
+          <!-- <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true" style="color:#e6e6ff"></i> Sign in / Sign up <span class="sr-only"></span></a> -->
+          <!-- Button trigger modal -->
+          <a type="button" class="nav-link" class="cd-signin" href="#0">
+            <i class="fa fa-user" aria-hidden="true" style="color:#e6e6ff"></i> Sign in / Sign up <span class="sr-only"></span>
+          </a>
+
         </li>
         <li class="nav-item active">
             <button class="btn btn-warning my-2 my-sm-0" type="submit">Donate Now</button>
@@ -41,7 +47,104 @@
       </ul>
     </div>
   </nav>
+
   <br>
+
+<!-------------------------------------------------------------- Login/Signup Modal ------------------------------------------------------------>
+
+  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+    <ul class="cd-switcher">
+    <li><a href="#0">Sign In</a></li>
+    <li><a href="#0">Sign Up</a></li>
+    </ul>
+    
+    <div id="cd-login"> <!-- log in form -->
+    <form class="cd-form">
+    <p class="fieldset">
+    <label class="image-replace cd-email" for="signin-email">E-mail</label>
+    <input class="full-width has-padding has-border" id="signin-email" type="email" placeholder="E-mail">
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <label class="image-replace cd-password" for="signin-password">Password</label>
+    <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+    <a href="#0" class="hide-password">Hide</a>
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <input type="checkbox" id="remember-me" checked>
+    <label for="remember-me">Remember me</label>
+    </p>
+    
+    <p class="fieldset">
+    <input class="full-width" type="submit" value="Login">
+    </p>
+    </form>
+    
+    <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+    <!-- <a href="#0" class="cd-close-form">Close</a> -->
+    </div> <!-- cd-login -->
+    
+    <div id="cd-signup"> <!-- sign up form -->
+    <form class="cd-form">
+    <p class="fieldset">
+    <label class="image-replace cd-username" for="signup-username">Username</label>
+    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <label class="image-replace cd-email" for="signup-email">E-mail</label>
+    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <label class="image-replace cd-password" for="signup-password">Password</label>
+    <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+    <a href="#0" class="hide-password">Hide</a>
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <input type="checkbox" id="accept-terms">
+    <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+    </p>
+    
+    <p class="fieldset">
+    <input class="full-width has-padding" type="submit" value="Create account">
+    </p>
+    </form>
+    
+    <!-- <a href="#0" class="cd-close-form">Close</a> -->
+    </div> <!-- cd-signup -->
+    
+    <div id="cd-reset-password"> <!-- reset password form -->
+    <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+    
+    <form class="cd-form">
+    <p class="fieldset">
+    <label class="image-replace cd-email" for="reset-email">E-mail</label>
+    <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <input class="full-width has-padding" type="submit" value="Reset password">
+    </p>
+    </form>
+    
+    <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+    </div> <!-- cd-reset-password -->
+    <a href="#0" class="cd-close-form">Close</a>
+    </div> <!-- cd-user-modal-container -->
+    </div> <!-- cd-user-modal -->
+   
+ <!-------------------------------------------------------------------- Carousel --------------------------------------------------------------->
+   
   <div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
     <ol class="carousel-indicators">
       <li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
@@ -74,6 +177,9 @@
     </a>
   </div>
 </div>
+
+<!---------------------------------------------------------------- Marquee --------------------------------------------------------------------->
+
 <div class="container">
   <div class="row ">
       <p style="margin-top: 12px; background-color:  #1c87e5; color: white; ">
@@ -91,6 +197,9 @@
       </p>
   </div>
 </div>
+
+<!--------------------------------------------------------- Introduction Section --------------------------------------------------------------->
+
 <section class="text-gray-700 body-font">
   <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
     <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
@@ -108,6 +217,9 @@
     </div>
   </div>
 </section>
+
+<!-------------------------------------------------------- What Are We Doing ------------------------------------------------------------------->
+
 <section class="text-gray-700 body-font">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
@@ -178,6 +290,9 @@
     </div>
   </div>
 </section>
+
+<!------------------------------------------------------------------- Steps -------------------------------------------------------------------->
+
 <section class="text-gray-700 body-font">
   <div class="container px-5 py-24 mx-auto flex flex-wrap">
     <div class="flex flex-wrap w-full">
@@ -243,6 +358,7 @@
   </div>
 </section>
 
+<!------------------------------------------------------------------- Footer ------------------------------------------------------------------->
 
 <button id="scrollToTopBtn"><img src="images/scrollup.png" alt=""></button>
   <footer id="footer " class="footer-1 ">

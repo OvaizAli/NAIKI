@@ -19,35 +19,66 @@
   <div class="headline">
     <i class="fa fa-handshake-o" aria-hidden="true"></i> &nbsp;Millions of people's life has changed, Million more are awaiting for your donations
   </div>
-  <nav class="navbar navbar-expand-lg">
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
     <a class="navbar-brand" href="#">
-      <img src="./images/Logo.png" alt="" class="logo">
-      <!-- <strong>Buddy's Mart</strong> -->
+      <img src="./images/Logo.png"  class="d-inline-block align-top logo" alt="" loading="lazy">
+      
     </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="" role="button" ><i class="fa fa-bars" aria-hidden="true" style="color:#e6e6ff"></i></span>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
     </button>
-  
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
-        <form class="form-inline my-2 my-lg-0">
-            <input type="text" name="search" placeholder="&#xF002; Search..." style="font-family:Arial, FontAwesome" />
-        </form>
-        <li class="nav-item">
-          <!-- <a class="nav-link" href="#"><i class="fa fa-user" aria-hidden="true" style="color:#e6e6ff"></i> Sign in / Sign up <span class="sr-only"></span></a> -->
-          <!-- Button trigger modal -->
-          <a type="button" class="nav-link" class="cd-signin" href="#0">
-            <i class="fa fa-user" aria-hidden="true" style="color:#e6e6ff"></i> Sign in / Sign up <span class="sr-only"></span>
-          </a>
-
-        </li>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-            <button class="btn btn-warning my-2 my-sm-0" type="submit">Donate Now</button>
+          <a class="btn btn-light nav-btn nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-light nav-btn nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="btn btn-light nav-btn nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            NAIKI Services
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Donations (Sadqah)</a>
+            <a class="dropdown-item" href="#">Welfare</a>
+            <a class="dropdown-item" href="#">Medical</a>
+            <a class="dropdown-item" href="#">Dastarkhwan/Food Collection</a>
+            <a class="dropdown-item" href="#">Education</a>
+            <a class="dropdown-item" href="#">Approach Volunteers</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="btn btn-light nav-btn nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Donation
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Donation (Sadqa)</a>
+            <a class="dropdown-item" href="#">Other Donations</a>
+            <a class="dropdown-item" href="#">COVID 19 Effecties</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-light nav-btn nav-link" href="#">Contact Us</a>
         </li>
       </ul>
+      <span class="navbar-text">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
+          <li class="nav-item inupModal">
+            
+            <a type="button" class="nav-link" class="cd-signin" href="#0">
+              <i class="fa fa-user" aria-hidden="true" style="color: white"></i> Sign in / Sign up <span class="sr-only"></span>
+            </a>
+  
+          </li>
+          <li class="nav-item active">
+              <button class="btn btn-warning my-2 my-sm-0" type="submit">Donate Now</button>
+          </li>
+        </ul>
+      </span>
     </div>
   </nav>
-
+  
   <br>
 
 <!-------------------------------------------------------------- Login/Signup Modal ------------------------------------------------------------>
@@ -200,7 +231,7 @@
 
 <!--------------------------------------------------------- Introduction Section --------------------------------------------------------------->
 
-<section class="text-gray-700 body-font">
+<section class="text-gray-700 body-font" id="aboutus">
   <div class="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
     <div class="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
       <h1 class="title-font sm:text-4xl text-3xl mb-4 font-bold text-gray-900">INTRODUCTION</h1>
@@ -220,7 +251,7 @@
 
 <!-------------------------------------------------------- What Are We Doing ------------------------------------------------------------------->
 
-<section class="text-gray-700 body-font">
+<section class="text-gray-700 body-font" id="services">
   <div class="container px-5 py-24 mx-auto">
     <div class="flex flex-col text-center w-full mb-20">
       <h1 class="sm:text-3xl text-2xl font-medium title-font mb-4 text-gray-900">WHAT ARE WE DOING ?</h1>
@@ -361,7 +392,7 @@
 <!------------------------------------------------------------------- Footer ------------------------------------------------------------------->
 
 <button id="scrollToTopBtn"><img src="images/scrollup.png" alt=""></button>
-  <footer id="footer " class="footer-1 ">
+  <footer id="footer contactus" class="footer-1 ">
       <div class="main-footer widgets-dark typo-light ">
           <div class="container ">
               <div class="row ">
@@ -384,7 +415,7 @@
                               </li>
                               <li>
                                   <div class="thumb-content ">
-                                      <a href="#aboutus ">About Us</a>
+                                      <a href="#aboutus">About Us</a>
                                   </div>
                               </li>
                               <li>
@@ -394,7 +425,7 @@
                               </li>
                               <li>
                                   <div class="thumb-content ">
-                                      <a href="#contactus ">Contact Us</a>
+                                      <a href="#contactus">Contact Us</a>
                                   </div>
                               </li>
                           </ul>

@@ -530,7 +530,23 @@
   #cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
     display: block;
   }
+  #rd1 {
+    padding: 10px;
+    margin: 10px;
+    position: left;
+  }
 
+  #rd2 {
+    padding: 10px;
+    margin: 10px;
+    position: center;
+  }
+
+  #rd3 {
+    padding: 10px;
+    margin: 10px;
+    position: right;
+  }
 /* ---------------------------------------------------------------------- Footer -------------------------------------------------------------*/
 
 footer .main-footer {
@@ -788,9 +804,12 @@ ul.social-footer2 li a {
     top:200px;
   }
 
-  
-
-
+  /* --------------------------------------------------------- Help Seeker ------------------------------------------------------------------- */
+  .helpHead{
+    text-align: center;
+    font-size: 50px;
+    margin-bottom: 30px;
+  }
 
 
 

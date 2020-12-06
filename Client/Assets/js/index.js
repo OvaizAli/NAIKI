@@ -169,7 +169,7 @@ jQuery(document).ready(function($){
   // --------------------------------------------------------------------------------------------------------------------
 
   function signin() {
-    fetch('http://localhost:3000/Signin/', {
+    fetch('http://localhost:3001/Signin/', {
         method: 'GET'
     })
     .then(response => response.json())
@@ -177,13 +177,17 @@ jQuery(document).ready(function($){
 }
 
 function validate(data){
+  // console.log(data);
   var valFlag = 0;
   var userCnic = parseInt(document.getElementById('signin-cnic').value);
   var userPass = parseInt(document.getElementById('signin-password').value);
+  var donor =  document.getElementById("rd1");
+  var seeker =  document.getElementById("rd2");
+  var admin =  document.getElementById("rd3");
   console.log(userCnic,userPass);
   (data.forEach(function ({cnic, password}) {
     password = parseInt(password);
-    // console.log(typeof cnic,typeof password);
+    console.log(typeof cnic,typeof password);
     if(userCnic === cnic && userPass === password){
       valFlag = 1;
     }
@@ -191,7 +195,35 @@ function validate(data){
   );
   if (valFlag == 1){
     console.log("Login Success!");
+    if(donor.checked==true)
+    {
+      window.location.assign("Client/Donor.html");
+    }
+    if(seeker.checked==true)
+      window.location.assign("Client/helpSeeker.html");
+    if(admin.checked==true)
+      window.location.assign("Client/NGOAdmin.html");
   }else{
     console.log("Your cnic or pass is incorrect!");
   }
 }
+
+// ------------------------------------------------------ Help Seeker -----------------------------------------------------
+
+// ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
+
+// // console.log(window.location.pathname);
+// if(window.location.pathname === "/Client/helpSeeker.html"){
+//     document.addEventListener('DOMContentLoaded', function () {
+//       fetch('http://localhost:3001/getDonationData')
+//       .then(response => response.json())
+//       .then(data => loadDonations(data['data']));
+    
+// });
+// function loadDonations(data, text) {
+//   console.log(text)
+//   data.forEach(function ({type_name}) {
+//     console.log(type_name);
+//     document.getElementById("donationTitle").innerHTML = type_name;
+// });
+// }}

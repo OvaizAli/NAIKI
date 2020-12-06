@@ -50,6 +50,16 @@ app.get('/Signin', (request, response) => {
     // console.log("Inside GET");
 });
 
+// ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
+// app.get('/getDonationData', (request, response) => {
+//       const db = dbService.getDbServiceInstance();
+//       const result = db.getDonationData();
+//       result
+//       // .then(data => console.log(data))
+//       .then(data => response.json({data : data}))
+//       .catch(err => console.log(err));
+// });
+
 
 // // read
 // app.get('/getAll', (request, response) => {
@@ -100,4 +110,6 @@ app.get('/Signin', (request, response) => {
 //     // console.log('Hello');
 // });
 
-app.listen(3000, () => console.log('app is running'));
+app.listen(3001, () => console.log('app is running'));
+
+

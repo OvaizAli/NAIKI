@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Serve Humanity Online | Donate - NAIKI</title>
+    <link rel="stylesheet" href="./Assets/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./Assets/css/styles.css">
+    <link rel="icon" href="./Assets/images/Logo.png" type="" >
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"/> 
+    <link href="https://fonts.googleapis.com/css2?family=Balsamiq+Sans:wght@700&display=swap" rel="stylesheet">
+    <!-- <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css"> -->
+    <link href="https://unpkg.com/tailwindcss@^1.0/dist/tailwind.min.css" rel="stylesheet">
+</head>
+
+<body>
+  <!------------------------------------------------------------------- Nav bar ---------------------------------------------------------------->
+  <div class="headline">
+    <i class="fa fa-handshake-o" aria-hidden="true"></i> &nbsp;Millions of people's life has changed, Million more are awaiting for your donations
+  </div>
+  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+    <a class="navbar-brand" href="#">
+      <img src="./Assets/images/Logo.png"  class="d-inline-block align-top logo" alt="" loading="lazy">
+      
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarText">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="btn btn-light nav-btn nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-light nav-btn nav-link" href="#">About</a>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="btn btn-light nav-btn nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            NAIKI Services
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Donations (Sadqah)</a>
+            <a class="dropdown-item" href="#">Welfare</a>
+            <a class="dropdown-item" href="#">Medical</a>
+            <a class="dropdown-item" href="#">Dastarkhwan/Food Collection</a>
+            <a class="dropdown-item" href="#">Education</a>
+            <a class="dropdown-item" href="#">Approach Volunteers</a>
+          </div>
+        </li>
+        <li class="nav-item dropdown">
+          <a class="btn btn-light nav-btn nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            Donation
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Donation (Sadqa)</a>
+            <a class="dropdown-item" href="#">Other Donations</a>
+            <a class="dropdown-item" href="#">COVID 19 Effecties</a>
+          </div>
+        </li>
+        <li class="nav-item">
+          <a class="btn btn-light nav-btn nav-link" href="#">Contact Us</a>
+        </li>
+      </ul>
+      <span class="navbar-text">
+        <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
+          <li class="nav-item inupModal">
+            
+            <a type="button" class="nav-link" class="cd-signin" href="#0">
+              <i class="fa fa-user" aria-hidden="true" style="color: white"></i> Sign in / Sign up <span class="sr-only"></span>
+            </a>
+  
+          </li>
+          <li class="nav-item active">
+              <button class="btn btn-warning my-2 my-sm-0" type="submit">Donate Now</button>
+          </li>
+        </ul>
+      </span>
+    </div>
+  </nav>
+  <!-- <nav class="navbar navbar-expand-lg">
+    <a class="navbar-brand" href="#">
+      <img src="./images/Logo.png" alt="NAIKI-Logo" class="logo">
+      
+    </a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="" role="button" ><i class="fa fa-bars" aria-hidden="true" style="color:#e6e6ff"></i></span>
+    </button>
+  
+    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
+      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
+        <form class="form-inline my-2 my-lg-0">
+            <input type="text" name="search" placeholder="&#xF002; Search..." style="font-family:Arial, FontAwesome" />
+        </form>
+        <li class="nav-item">
+          
+          <a type="button" class="nav-link" class="cd-signin" href="#0">
+            <i class="fa fa-user" aria-hidden="true" style="color:#e6e6ff"></i> Sign in / Sign up <span class="sr-only"></span>
+          </a>
+
+        </li>
+        <li class="nav-item active">
+            <button class="btn btn-warning my-2 my-sm-0" type="submit">Donate Now</button>
+        </li>
+      </ul>
+    </div>
+  </nav> -->
+
+  <br>
+
+<!-------------------------------------------------------------- Login/Signup Modal ------------------------------------------------------------>
+
+  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
+    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
+    <ul class="cd-switcher">
+    <li><a href="#0">Sign In</a></li>
+    <li><a href="#0">Sign Up</a></li>
+    </ul>
+    
+    <div id="cd-login"> <!-- log in form -->
+    <form class="cd-form">
+    <p class="fieldset">
+    <label class="image-replace cd-cnic" for="signin-cnic">CNIC No.</label>
+    <input class="full-width has-padding has-border" id="signin-cnic" type="text" placeholder="CNIC No.">
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <label class="image-replace cd-password" for="signin-password">Password</label>
+    <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
+    <a href="#0" class="hide-password">Hide</a>
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <input type="checkbox" id="remember-me" checked>
+    <label for="remember-me">Remember me</label>
+    </p>
+    
+    <p class="fieldset">
+    <input class="full-width" type="submit" value="Login" onclick="signin()">
+    </p>
+    </form>
+    
+    <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
+    <!-- <a href="#0" class="cd-close-form">Close</a> -->
+    </div> <!-- cd-login -->
+    
+    <div id="cd-signup"> <!-- sign up form -->
+    <form class="cd-form">
+    <p class="fieldset">
+    <label class="image-replace cd-username" for="signup-username">Username</label>
+    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <label class="image-replace cd-email" for="signup-email">E-mail</label>
+    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <label class="image-replace cd-password" for="signup-password">Password</label>
+    <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+    <a href="#0" class="hide-password">Hide</a>
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <input type="checkbox" id="accept-terms">
+    <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+    </p>
+    
+    <p class="fieldset">
+    <input class="full-width has-padding" type="submit" value="Create account">
+    </p>
+    </form>
+    
+    <!-- <a href="#0" class="cd-close-form">Close</a> -->
+    </div> <!-- cd-signup -->
+    
+    <div id="cd-reset-password"> <!-- reset password form -->
+    <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
+    
+    <form class="cd-form">
+    <p class="fieldset">
+    <label class="image-replace cd-email" for="reset-email">E-mail</label>
+    <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
+    <span class="cd-error-message">Error message here!</span>
+    </p>
+    
+    <p class="fieldset">
+    <input class="full-width has-padding" type="submit" value="Reset password">
+    </p>
+    </form>
+    
+    <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
+    </div> <!-- cd-reset-password -->
+    <a href="#0" class="cd-close-form">Close</a>
+    </div> <!-- cd-user-modal-container -->
+    </div> <!-- cd-user-modal -->
+   
+<!------------------------------------------------------------------- Help Seeker -------------------------------------------------------------->
+<div class="helpHead">
+  <p>Request Form</p>
+</div>
+<div class="container" style="padding-bottom: 50px;">
+  <form>
+    <div class="form-row">
+      <div class="col-md-6 mb-3">
+        <label for="validationDefault01">Name</label>
+        <input type="text" class="form-control" id="validationDefault01" placeholder="Mark" required>
+      </div>
+      <div class="col-md-6 mb-3">
+        <label for="validationDefault02">CNIC No.</label>
+        <input type="text" class="form-control" id="validationDefault02" placeholder="13 digit" required>
+      </div>
+    </div>
+    <div class="form-row">
+      <!-- <div class="col-md-3 mb-3">
+        <label for="validationDefault03">Phone No.</label>
+        <input type="text" class="form-control" id="validationDefault03" required>
+      </div> -->
+      <div class="col-md-3 mb-3">
+        <label for="validationDefault04">City</label>
+        <select class="custom-select" id="validationDefault03" required>
+          <option selected disabled value="">Choose...</option>
+          <option>Karachi</option>
+          <option>Lahore</option>
+          <option>Islamabad</option>
+          <option>Quetta</option>
+          <option>Peshawar</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationDefault04">Donation Type</label>
+        <select class="custom-select" id="validationDefault04" required>
+          <option selected disabled value="">Choose...</option>
+          <option>Money</option>
+          <option>Food</option>
+          <option>Education</option>
+          <option>Clothes</option>
+        </select>
+      </div>
+      <div class="col-md-3 mb-3">
+        <label for="validationDefault05">Quantity</label>
+        <input type="text" class="form-control" id="validationDefault05" placeholder="digits" required>
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="" id="invalidCheck2" required>
+        <label class="form-check-label" for="invalidCheck2">
+          Agree to terms and conditions
+        </label>
+      </div>
+    </div>
+    <button class="btn btn-primary" type="submit" onclick="reqhelp()">Submit form </button>
+  </form>
+</div>
+
+
+
+
+
+<!------------------------------------------------------------------- Footer ------------------------------------------------------------------->
+
+<button id="scrollToTopBtn"><img src="./Assets/images/scrollup.png" alt=""></button>
+  <footer id="footer contactus" class="footer-1 ">
+      <div class="main-footer widgets-dark typo-light ">
+          <div class="container ">
+              <div class="row ">
+
+                  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 ">
+                      <div class="widget subscribe no-box ">
+                          <h5 class="widget-title "><strong>NAIKI</strong><span></span></h5>
+                          <p>Here to create a better world using our utmost potential. We are here because we believe in achieving goals beside setting meagre limits.</p>
+                      </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 ">
+                      <div class="widget no-box ">
+                          <h5 class="widget-title ">Quick Links<span></span></h5>
+                          <ul class="thumbnail-widget ">
+                              <li>
+                                  <div class="thumb-content ">
+                                      <a href="/index.html">Home</a>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="thumb-content ">
+                                      <a href="#aboutus">About Us</a>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="thumb-content ">
+                                      <a href="#services">Services</a>
+                                  </div>
+                              </li>
+                              <li>
+                                  <div class="thumb-content ">
+                                      <a href="#contactus">Contact Us</a>
+                                  </div>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+                  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 ">
+                      <div class="widget no-box ">
+                          <h5 class="widget-title ">Contact Us<span></span></h5>
+
+                          <p><i class="fa fa-map-marker " aria-hidden="true "></i>&nbsp;&nbsp;St-4 Sector 17-D On National Highway Karachi, Pakistan.</p>
+                          <p><i class="fa fa-phone " aria-hidden="true "></i>&nbsp;&nbsp;&nbsp;+92-332-2847298</p>
+                      </div>
+                  </div>
+
+                  <div class="col-xs-12 col-sm-6 col-md-3 col-lg-3 ">
+
+                      <div class="widget no-box ">
+                          <h5 class="widget-title ">&nbsp;<span></span></h5>
+                          <p><a href="mailto:info@domain.com " title="glorythemes ">info@domain.com</a></p>
+                          <ul class="social-footer2 ">
+                              <li class=" ">
+                                  <a href="# " class="fa fa-linkedin "></a>
+                              </li>
+                              <li class=" ">
+                                  <a href="" class="fa fa-facebook "></a>
+                              </li>
+                              <li class=" ">
+                                  <a href="# " class="fa fa-twitter "></a>
+                              </li>
+                              <li class=" ">
+                                  <a href="# " class="fa fa-instagram "></a>
+                              </li>
+                          </ul>
+                      </div>
+                  </div>
+
+              </div>
+          </div>
+      </div>
+     
+      <div class="footer-copyright ">
+          <div class="container ">
+              <div class="row ">
+                  <div class="col-md-12 text-center ">
+                      <p>Copyright NAIKI © 2020. All rights reserved.</p>
+                  </div>
+              </div>
+          </div>
+          
+      </div>
+  </footer>
+
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js" integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js" integrity="sha384-9/reFTGAW83EW2RDu2S0VKaIzap3H66lZH81PoYlFhbGU+6BZp6G7niu735Sk7lN" crossorigin="anonymous"></script>
+    <script src="./Assets/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/modernizr/2.8.3/modernizr.min.js"></script>
+    <script src="./Assets/js/index.js"></script>
+</body>
+</html>

@@ -530,22 +530,16 @@
   #cd-login.is-selected, #cd-signup.is-selected, #cd-reset-password.is-selected {
     display: block;
   }
-  #rd1 {
+  #rd1, #rd2,#rd3 {
     padding: 10px;
     margin: 10px;
     position: left;
   }
 
-  #rd2 {
+  #signup-gender-M, #signup-gender-F {
     padding: 10px;
     margin: 10px;
-    position: center;
-  }
-
-  #rd3 {
-    padding: 10px;
-    margin: 10px;
-    position: right;
+    position: left;
   }
 /* ---------------------------------------------------------------------- Footer -------------------------------------------------------------*/
 

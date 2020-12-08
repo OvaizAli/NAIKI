@@ -2,11 +2,11 @@ const mysql = require('mysql');
 let instance = null;
 
 const connection = mysql.createConnection({
-    user: "root",
-    host: "localhost",
-    password: "Ovaizali110*",
-    database: "naiki",
-    port: "3000"
+    host: 'localhost',
+    user: 'root',
+    password: 'ma325ksa',
+    database: 'naiki',
+    //port: "3000"
 });
 
 connection.connect((err) => {
@@ -14,7 +14,7 @@ connection.connect((err) => {
         console.log(err.message);
     }
     // console.log('db ' + connection.state);
-});
+}); 
 
 
 class DbService {
@@ -39,23 +39,185 @@ class DbService {
         }
     }
     // ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
-    // async getDonationData() {
-    //     try {
-    //         const response = await new Promise((resolve, reject) => {
-    //             const query = "select dt.type_id, type_name from donat_type dt Join donation_req dr on dt.type_id = dr.type_id;";
+    async getDonationData() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "select dt.type_id, type_name from donat_type dt Join donation_req dr on dt.type_id = dr.type_id;";
 
-    //             connection.query(query, (err, results) => {
-    //                 if (err) reject(new Error(err.message));
-    //                 resolve(results);
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            // console.log(response);
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getDonationType() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "select type_name from donat_type";
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            // console.log(response);
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async getSignUpDetails() {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT * FROM sys_user;";
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    async insertUser(name,cnic,gender,contact,email,city,password){
+        try{
+            const response = await new Promise((resolve, reject)=>{
+                var l;
+                var loc = `select idLoc from location where LocName = ?`;
+                connection.query(loc,city, function(err, result)
+                {
+                    if(err) throw err;
+                    l = result[0].idLoc;
+                    console.log(l);
+                    let sql = `insert into sys_user (name,cnic,gender,contact,email,loc_id,password) values ("${name}",${cnic},"${gender}",${contact},"${email}",${l},"${password}")`;
+                    connection.query(sql, function(err,result)
+                    {
+                        if(err) throw err;
+                        var uid;
+                        var id = `select user_id from sys_user where cnic = ?`;
+                        connection.query(id,cnic, function(err, result)
+                        {
+                            if(err) throw err;
+                            uid = result[0].user_id;
+                            console.log("uid"+uid);
+                            let sql = `insert into seeker (user_id) value (${uid})`;
+                            connection.query(sql, function(err,result)
+                            {
+                                if(err) throw err;
+                                sql = `insert into donor (user_id) value (${uid})`;
+                                connection.query(sql, function(err,result)
+                                {
+                                    if(err) throw err;
+                                    resolve(result.insertId);
+                                    return result.insertId;
+                                });
+                        //return result.insertId;
+                            });
+                         })
+                    });
+                })
+            });
+        }catch (error) {
+            console.log(error);
+        }
+    }
+
+    async checkseeker(){
+        try {
+            const response = await new Promise((resolve, reject) => {
+                const query = "SELECT cnic from sys_user where user_id in (select user_id from seeker);";
+
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            console.log(response);
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
+
+    // async createseekerdonor(cnic){
+    //     try{
+    //         const response = await new Promise((resolve, reject)=>{
+    //             var uid;
+    //             var id = `select user_id from sys_user where cnic = ?`;
+    //             connection.query(id,cnic, function(err, result)
+    //             {
+    //                 if(err) throw err;
+    //                 uid = result[0].user_id;
+    //                 console.log("uid"+uid);
+    //                 let sql = `insert into seeker (user_id) value (${uid})`;
+    //                 connection.query(sql, function(err,result)
+    //                 {
+    //                     if(err) throw err;
+    //                     resolve(result.insertId);
+    //                     sql = `insert into donor (user_id) value (${uid})`;
+    //                     connection.query(sql, function(err,result)
+    //                     {
+    //                         if(err) throw err;
+    //                         resolve(result.insertId);
+    //                         return result.insertId;
+    //                     });
+    //                 });
     //             })
     //         });
-    //         // console.log(response);
-    //         return response;
-    //     } catch (error) {
+    //     }catch (error) {
     //         console.log(error);
     //     }
     // }
 
+    async setDonationReq(Name, cnic, city, type, quantity) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                var l;
+                var s;
+                var t;
+                var loc = `select idLoc from location where LocName = ?`;
+                connection.query(loc,city,function(err,result)
+                {
+                    if(err) throw err;
+                    l = result[0].idLoc;
+                    console.log(l);
+                    var typ = `select type_id from donat_type where type_name = ?`;
+                    connection.query(typ,type, function(err,result)
+                    {
+                        if(err) throw err;
+                        t = result[0].type_id;
+                        console.log(t);
+                        var seeker = `select idSeeker from seeker where user_id in (select user_id from sys_user where cnic = ?)`;
+                        connection.query(seeker,cnic, function(err,result){
+                            if(err) throw err;
+                            s = result[0].idSeeker;
+                            console.log(s);
+                            let sql = `insert into donation_req (seeker_id,type_id,quantity,loc_id) values (${s},${t},"${quantity}",${l})`;
+                            connection.query(sql, function(err,result)
+                            {
+                                if(err) throw err;
+                                resolve(result.insertId);
+                                return result.insertId;
+                            });
+                        })
+                    })
+                })
+            });
+        }catch (error) {
+            console.log(error);
+        }
+    }
+
+    
 // //     async deleteAllData() {
 // //         try {
 // //             const response = await new Promise((resolve, reject) => {

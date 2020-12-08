@@ -152,35 +152,59 @@
     </div> <!-- cd-login -->
     
     <div id="cd-signup"> <!-- sign up form -->
-    <form class="cd-form">
-    <p class="fieldset">
-    <label class="image-replace cd-username" for="signup-username">Username</label>
-    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-    <span class="cd-error-message">Error message here!</span>
-    </p>
-    
-    <p class="fieldset">
-    <label class="image-replace cd-email" for="signup-email">E-mail</label>
-    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-    <span class="cd-error-message">Error message here!</span>
-    </p>
-    
-    <p class="fieldset">
-    <label class="image-replace cd-password" for="signup-password">Password</label>
-    <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
-    <a href="#0" class="hide-password">Hide</a>
-    <span class="cd-error-message">Error message here!</span>
-    </p>
-    
-    <p class="fieldset">
-    <input type="checkbox" id="accept-terms">
-    <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
-    </p>
-    
-    <p class="fieldset">
-    <input class="full-width has-padding" type="submit" value="Create account">
-    </p>
-    </form>
+      <form class="cd-form">
+      <p class="fieldset">
+      <label class="image-replace cd-username" for="signup-username">Username</label>
+      <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
+      <span class="cd-error-message">Error message here!</span>
+      </p>
+  
+      <p class="fieldset">
+      <label class="image-replace cd-cnic" for="signup-cnic">Cnic</label>
+      <input class="full-width has-padding has-border" id="signup-cnic" type="text" placeholder="Cnic">
+      <span class="cd-error-message">Error message here!</span>
+      </p>
+  
+      <p class="fieldset">
+      <label class="image-replace cd-contact" for="signup-contact">Contact</label>
+      <input class="full-width has-padding has-border" id="signup-contact" type="text" placeholder="Contact">
+      <span class="cd-error-message">Error message here!</span>
+      </p>
+      
+      <p class="fieldset">
+      <label class="image-replace cd-email" for="signup-email">E-mail</label>
+      <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
+      <span class="cd-error-message">Error message here!</span>
+      </p>
+      
+      <p class="fieldset">
+      <label class="image-replace cd-location" for="signup-location">Location</label>
+      <input class="full-width has-padding has-border" id="signup-location" type="text" placeholder="Location">
+      <span class="cd-error-message">Error message here!</span>
+      </p>
+  
+      <p class="fieldset">
+      <label class="image-replace cd-password" for="signup-password">Password</label>
+      <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
+      <a href="#0" class="hide-password">Hide</a>
+      <span class="cd-error-message">Error message here!</span>
+      </p>
+      
+      <p class="fieldset">
+      <input id="signup-gender-M" name="gender" type="radio" value='M'>Male</input>
+      <input id="signup-gender-F" name="gender" type="radio" value='F'>Female</input>
+      </p>
+  
+      <p class="fieldset">
+      <input type="checkbox" id="accept-terms">
+      <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
+      </p>
+      
+      <p class="fieldset">
+      <input class="full-width has-padding" type="submit" value="Create account" onclick="signup()">
+      </p>
+      </form>
+      
     
     <!-- <a href="#0" class="cd-close-form">Close</a> -->
     </div> <!-- cd-signup -->

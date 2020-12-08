@@ -108,15 +108,15 @@ jQuery(document).ready(function($){
   $form_forgot_password.addClass('is-selected');
   }
   
-  //REMOVE THIS - it's just to show error messages 
-  $form_login.find('input[type="submit"]').on('click', function(event){
-  event.preventDefault();
-  $form_login.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
-  });
-  $form_signup.find('input[type="submit"]').on('click', function(event){
-  event.preventDefault();
-  $form_signup.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
-  });
+  // //REMOVE THIS - it's just to show error messages 
+  // $form_login.find('input[type="submit"]').on('click', function(event){
+  // event.preventDefault();
+  // $form_login.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+  // });
+  // $form_signup.find('input[type="submit"]').on('click', function(event){
+  // event.preventDefault();
+  // $form_signup.find('input[type="email"]').toggleClass('has-error').next('span').toggleClass('is-visible');
+  // });
   
   
   //IE9 placeholder fallback
@@ -169,7 +169,7 @@ jQuery(document).ready(function($){
   // --------------------------------------------------------------------------------------------------------------------
 
   function signin() {
-    fetch('http://localhost:3001/Signin/', {
+    fetch('http://localhost:3000/Signin/', {
         method: 'GET'
     })
     .then(response => response.json())
@@ -180,13 +180,13 @@ function validate(data){
   // console.log(data);
   var valFlag = 0;
   var userCnic = parseInt(document.getElementById('signin-cnic').value);
-  var userPass = parseInt(document.getElementById('signin-password').value);
+  var userPass = (document.getElementById('signin-password').value);
   var donor =  document.getElementById("rd1");
   var seeker =  document.getElementById("rd2");
   var admin =  document.getElementById("rd3");
   console.log(userCnic,userPass);
   (data.forEach(function ({cnic, password}) {
-    password = parseInt(password);
+    //password = parseInt(password);
     console.log(typeof cnic,typeof password);
     if(userCnic === cnic && userPass === password){
       valFlag = 1;
@@ -194,17 +194,125 @@ function validate(data){
   })
   );
   if (valFlag == 1){
-    console.log("Login Success!");
+    console.log("Login!");
     if(donor.checked==true)
     {
       window.location.assign("Client/Donor.html");
     }
     if(seeker.checked==true)
+    {
       window.location.assign("Client/helpSeeker.html");
+    //   fetch('http://localhost:3000/Seekcheck/' , {
+    //     method: 'GET'
+    // })
+    // .then(response => response.json())
+    // .then(data => seekercreate(data['data']));
+    }
     if(admin.checked==true)
+    {
       window.location.assign("Client/NGOAdmin.html");
+    }
   }else{
     console.log("Your cnic or pass is incorrect!");
+  }
+}
+
+// function seekercreate(data)
+// {
+//   var valFlag = 0;
+//   var userCnic = parseInt(document.getElementById('signin-cnic').value);
+//   console.log(userCnic);
+//   (data.forEach(function ({cnic}) {
+//     if(userCnic === cnic ){
+//       valFlag = 1;
+//       console.log ("Success");
+//     }
+//   }))
+//   if(varflag == 1)
+//   {
+//     window.location.assign("Client/helpSeeker.html");
+//   }
+//   else{
+//     fetch('http://localhost:3000/seekcreate/', {
+//         headers: {
+//             'Content-type': 'application/json'
+//         },
+//         method: 'POST',
+//         body: JSON.stringify({ cnic : UserCnic})
+//     })
+//     .then(response => response.json())
+//     .then(data => {
+//         if (data.success) {
+//             window.location.assign("Client/helpSeeker.html");
+//         }
+//     });
+//   }
+// }
+
+function signup() {
+  fetch('http://localhost:3000/Signup/', {
+      method: 'GET'
+  })
+  .then(response => response.json())
+  .then(data => signupp(data['data']));
+}
+
+function signupp(data)
+{
+  var Cflag = 0;
+  var Coflag = 0;
+  var Eflag = 0;
+  var UCnic = parseInt(document.getElementById('signup-cnic').value);
+  var UPassword = (document.getElementById('signup-password').value);
+  var UName = (document.getElementById('signup-username').value);
+  var ULocation = (document.getElementById('signup-location').value);
+  var UContact = parseInt(document.getElementById('signup-contact').value);
+  var UEmail = (document.getElementById('signup-email').value);
+  var UMale =  document.getElementById('signup-gender-M');
+  var UFemale =  document.getElementById('signup-gender-F');
+  var UGender = null;
+  if(UMale.checked==true)
+    UGender = document.getElementById('signup-gender-M').value;
+  if(UFemale.checked==true)
+    UGender = document.getElementById('signup-gender-F').value;
+  console.log(UCnic,UPassword,UGender,ULocation);
+  (data.forEach(function ({cnic,email,contact}) 
+  {
+    if(UCnic === cnic)
+    {
+      Cflag = 1;
+      console.log("Cnic already in use cannot create account");
+    }
+    if(UEmail === email)
+    {
+      Eflag = 1;
+      console.log("Email already in use cannot create account"); 
+    }
+    if(UContact === contact)
+    {
+      Coflag = 1;
+      console.log("Contact already in use cannot create account");
+    }
+  })
+  );
+  if(Cflag == 0 && Eflag == 0 && Coflag == 0)
+  {
+    //window.location.assign("Client/Donor.html");
+    console.log("user created");
+    fetch('http://localhost:3000/NewUser/', {
+        headers: {
+            'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ name: UName, cnic : UCnic, gender : UGender , contact: UContact , email : UEmail , city : ULocation, password : UPassword})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) 
+        {
+          location.reload();
+        }
+    });
   }
 }
 
@@ -212,14 +320,14 @@ function validate(data){
 
 // ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
 
-// // console.log(window.location.pathname);
+// console.log(window.location.pathname);
 // if(window.location.pathname === "/Client/helpSeeker.html"){
 //     document.addEventListener('DOMContentLoaded', function () {
-//       fetch('http://localhost:3001/getDonationData')
+//       fetch('http://localhost:3000/getDonationData')
 //       .then(response => response.json())
 //       .then(data => loadDonations(data['data']));
     
-// });
+// })};
 // function loadDonations(data, text) {
 //   console.log(text)
 //   data.forEach(function ({type_name}) {
@@ -227,3 +335,29 @@ function validate(data){
 //     document.getElementById("donationTitle").innerHTML = type_name;
 // });
 // }}
+
+function reqhelp() {
+  console.log(window.location.pathname);
+  var Name = document.getElementById("validationDefault01").value;
+  var Cnic = parseInt(document.getElementById("validationDefault02").value);
+  var city =  document.getElementById("validationDefault03").value;
+  var type =  document.getElementById("validationDefault04").value;
+  var quantity =  (document.getElementById("validationDefault05").value);
+  fetch('http://localhost:3000/seek/', {
+        headers: {
+            'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ Name: Name, cnic : Cnic, city : city, type : type, quantity : quantity})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        }
+    });
+  
+}
+
+//function validate(data){
+  

@@ -210,35 +210,42 @@
     <div class="form-row">
       <div class="col-md-6 mb-3">
         <label for="validationDefault01">Name</label>
-        <input type="text" class="form-control" id="validationDefault01" value="Mark" required>
+        <input type="text" class="form-control" id="validationDefault01" placeholder="Mark" required>
       </div>
       <div class="col-md-6 mb-3">
         <label for="validationDefault02">CNIC No.</label>
-        <input type="text" class="form-control" id="validationDefault02" value="Otto" required>
+        <input type="text" class="form-control" id="validationDefault02" placeholder="13 digit" required>
       </div>
     </div>
     <div class="form-row">
-      <div class="col-md-3 mb-3">
+      <!-- <div class="col-md-3 mb-3">
         <label for="validationDefault03">Phone No.</label>
         <input type="text" class="form-control" id="validationDefault03" required>
-      </div>
+      </div> -->
       <div class="col-md-3 mb-3">
         <label for="validationDefault04">City</label>
-        <select class="custom-select" id="validationDefault04" required>
+        <select class="custom-select" id="validationDefault03" required>
           <option selected disabled value="">Choose...</option>
-          <option>...</option>
+          <option>Karachi</option>
+          <option>Lahore</option>
+          <option>Islamabad</option>
+          <option>Quetta</option>
+          <option>Peshawar</option>
         </select>
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationDefault04">Donation Type</label>
         <select class="custom-select" id="validationDefault04" required>
           <option selected disabled value="">Choose...</option>
-          <option>...</option>
+          <option>Money</option>
+          <option>Food</option>
+          <option>Education</option>
+          <option>Clothes</option>
         </select>
       </div>
       <div class="col-md-3 mb-3">
         <label for="validationDefault05">Quantity</label>
-        <input type="text" class="form-control" id="validationDefault05" required>
+        <input type="text" class="form-control" id="validationDefault05" placeholder="digits" required>
       </div>
     </div>
     <div class="form-group">
@@ -249,7 +256,7 @@
         </label>
       </div>
     </div>
-    <button class="btn btn-primary" type="submit">Submit form</button>
+    <button class="btn btn-primary" type="submit" onclick="reqhelp()">Submit form </button>
   </form>
 </div>
 

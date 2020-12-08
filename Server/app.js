@@ -104,6 +104,19 @@ app.post('/seek', (request, response) => {
   .catch(err => console.log(err));
 });
 
+app.post('/donate', (request, response) => {
+  const { Name, cnic, city, type, quantity } = request.body;
+  const db = dbService.getDbServiceInstance();
+  
+  console.log(Name, cnic, city, type, quantity);
+
+  const result = db.setDonation(Name, cnic, city, type, quantity);
+
+  result
+  .then(data => response.json({ data: data}))
+  .catch(err => console.log(err));
+});
+
 app.get('/Seekcheck', (request, response) => {
   const db = dbService.getDbServiceInstance();
   

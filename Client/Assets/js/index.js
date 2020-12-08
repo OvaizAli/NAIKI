@@ -356,7 +356,28 @@ function reqhelp() {
             location.reload();
         }
     });
-  
+}
+
+function donate() {
+  console.log(window.location.pathname);
+  var Name = document.getElementById("validationDefault01").value;
+  var Cnic = parseInt(document.getElementById("validationDefault02").value);
+  var city =  document.getElementById("validationDefault03").value;
+  var type =  document.getElementById("validationDefault04").value;
+  var quantity =  (document.getElementById("validationDefault05").value);
+  fetch('http://localhost:3000/donate/', {
+        headers: {
+            'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ Name: Name, cnic : Cnic, city : city, type : type, quantity : quantity})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            location.reload();
+        }
+    });
 }
 
 //function validate(data){

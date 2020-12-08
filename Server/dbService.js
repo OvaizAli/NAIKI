@@ -217,6 +217,45 @@ class DbService {
         }
     }
 
+    async setDonation(Name, cnic, city, type, quantity) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                var l;
+                var d;
+                var t;
+                var loc = `select idLoc from location where LocName = ?`;
+                connection.query(loc,city,function(err,result)
+                {
+                    if(err) throw err;
+                    l = result[0].idLoc;
+                    console.log(l);
+                    var typ = `select type_id from donat_type where type_name = ?`;
+                    connection.query(typ,type, function(err,result)
+                    {
+                        if(err) throw err;
+                        t = result[0].type_id;
+                        console.log(t);
+                        var donor = `select idDonor from donor where user_id in (select user_id from sys_user where cnic = ?)`;
+                        connection.query(donor,cnic, function(err,result){
+                            if(err) throw err;
+                            d = result[0].idDonor;
+                            console.log(d);
+                            let sql = `insert into donation (donor_id,type_id,quantity,loc_id) values (${d},${t},"${quantity}",${l})`;
+                            connection.query(sql, function(err,result)
+                            {
+                                if(err) throw err;
+                                resolve(result.insertId);
+                                return result.insertId;
+                            });
+                        })
+                    })
+                })
+            });
+        }catch (error) {
+            console.log(error);
+        }
+    }
+
     
 // //     async deleteAllData() {
 // //         try {

@@ -38,6 +38,7 @@ class DbService {
             console.log(error);
         }
     }
+
     // ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
     async getDonationData() {
         try {
@@ -256,6 +257,21 @@ class DbService {
         }
     }
 
+async getNgoEmpDetails() {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = "sselect u.cnic from sys_user u Join ngo_emp e on e.user_id = u.user_id;";
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+         });
+        // console.log(response);
+        return response;
+    }catch (error) {
+        console.log(error);
+    }    
+}
     
 // //     async deleteAllData() {
 // //         try {

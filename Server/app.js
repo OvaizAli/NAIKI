@@ -30,25 +30,13 @@ app.use(express.urlencoded({ extended : false }));
 
 // // Create
 app.get('/Signin', (request, response) => {
-    // const { todo_item } = request.body;
-    // const db = dbService.getDbServiceInstance();
-    
-    // const result = db.insertNewName(todo_item);
-
-    // result
-    // .then(data => response.json({ data: data}))
-    // .catch(err => console.log(err));
         const db = dbService.getDbServiceInstance();
 
         const result = db.getSignInDetails();
         
         result
-        // .then(data => console.log(data))
         .then(data => response.json({data : data}))
         .catch(err => console.log(err));
-        // console.log('Hello');
-    // console.log("Inside GET", request.body.cnic, request.body.password);
-    // console.log("Inside GET");
 });
 
 app.get('/Signup', (request, response) => {
@@ -131,6 +119,16 @@ app.get('/Seekcheck', (request, response) => {
       console.log(err)
     };
   }
+});
+
+app.get('/NgoEmp', (request, response) => {
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.getSignInDetails();
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
 });
 
 // app.post('/s_d_create', (request, response) => {

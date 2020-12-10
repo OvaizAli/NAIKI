@@ -210,13 +210,32 @@ function validate(data){
     }
     if(admin.checked==true)
     {
-      window.location.assign("Client/NGOAdmin.html");
+        fetch('http://localhost:3000/NgoEmp/' , {
+        method: 'GET'
+    })
+    .then(response => response.json())
+    .then(data => NgoEmpCheck(data['data']));
+      
     }
   }else{
     console.log("Your cnic or pass is incorrect!");
   }
 }
 
+function NgoEmpCheck(data)
+{
+  var valFlag = 0;
+  var userCnic = parseInt(document.getElementById('signin-cnic').value);
+  (data.forEach(function ({cnic}) {
+    if(userCnic === cnic){
+      valFlag = 1;
+    }
+  })
+  );
+  if (valFlag == 1){
+    window.location.assign("Client/NGOAdmin.html");
+  }
+}
 // function seekercreate(data)
 // {
 //   var valFlag = 0;

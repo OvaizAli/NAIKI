@@ -38,6 +38,50 @@ class DbService {
             console.log(error);
         }
     }
+    async setDonationReq(body) {
+        try {
+            const response = await new Promise((resolve, reject) => {
+                var bind = [];
+                var i = 0;
+                for(i=0;i<=5;i++){
+                    bind.push(body[i]);
+                };
+                var l;
+                var s;
+                var t;
+                var loc = `select idLoc from location where LocName = ?`;
+                connection.query(loc,bind[2],function(err,result)
+                {
+                    if(err) throw err;
+                    l = result[0].idLoc;
+                    console.log(l);
+                    var type = `select type_id from donat_type where type_name = ?`;
+                    connection.query(type,bind[3], function(err,result)
+                    {
+                        if(err) throw err;
+                        t = result[0].type_id;
+                        console.log(t);
+                        var seeker = `select idSeeker from seeker where user_id = (select user_id from sys_user where cnic = ?)`;
+                        connection.query(seeker,bind[1], function(err,result){
+                            if(err) throw err;
+                            s = result[0].idSeeker;
+                            console.log(s);
+                            let sql = `insert into donation_req (seeker_id,type_id,quantity,loc_id) values ("${s}",${t},"${bind[4]}",${l}")`;
+                            connection.query(sql, function(err,result)
+                            {
+                                if(err) throw err;
+                                resolve(result.insertId);
+                            });
+                        })
+                    })
+                })
+            });
+            console.log(response);
+            return response;
+        }catch (error) {
+            console.log(error);
+        }
+    }
     // ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
     // async getDonationData() {
     //     try {

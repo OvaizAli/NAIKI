@@ -227,3 +227,15 @@ function validate(data){
 //     document.getElementById("donationTitle").innerHTML = type_name;
 // });
 // }}
+function reqhelp() {
+  console.log(window.location.pathname);
+  var Name = document.getElementById("validationDefault01").value;
+  var Cnic = parseInt(document.getElementById("validationDefault02").value);
+  var city =  document.getElementById("validationDefault03").value;
+  var type =  document.getElementById("validationDefault04").value;
+  var quantity =  parseInt(document.getElementById("validationDefault05").value);
+  fetch('http://localhost:3000/seek/', {
+      method: 'POST'
+  })
+  
+}

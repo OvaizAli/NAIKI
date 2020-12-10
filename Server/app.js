@@ -50,6 +50,22 @@ app.get('/Signin', (request, response) => {
     // console.log("Inside GET");
 });
 
+app.get('/seek', (request, response) =>{
+  const db = dbService.getDbServiceInstance();
+  let userInput= {
+    name: request.body.Name,
+    cnic: request.body.cnic,
+    city: request.body.city,
+    type: request.body.quantity,
+    quantity: request.body.quantity
+};
+console.log(userInput);
+const result = db.setDonationReq(userInput);
+      result
+      // .then(data => console.log(data))
+      .then(data => response.json({data : data}))
+      .catch(err => console.log(err));
+})
 // ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
 // app.get('/getDonationData', (request, response) => {
 //       const db = dbService.getDbServiceInstance();

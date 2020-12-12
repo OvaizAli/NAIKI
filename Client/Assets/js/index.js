@@ -169,7 +169,7 @@ jQuery(document).ready(function($){
   // --------------------------------------------------------------------------------------------------------------------
 
   function signin() {
-    fetch('http://localhost:3000/Signin/', {
+    fetch('http://localhost:3001/Signin/', {
         method: 'GET'
     })
     .then(response => response.json())
@@ -202,7 +202,7 @@ function validate(data){
     if(seeker.checked==true)
     {
       window.location.assign("Client/helpSeeker.html");
-    //   fetch('http://localhost:3000/Seekcheck/' , {
+    //   fetch('http://localhost:3001/Seekcheck/' , {
     //     method: 'GET'
     // })
     // .then(response => response.json())
@@ -210,7 +210,7 @@ function validate(data){
     }
     if(admin.checked==true)
     {
-        fetch('http://localhost:3000/NgoEmp/' , {
+        fetch('http://localhost:3001/NgoEmp/' , {
         method: 'GET'
     })
     .then(response => response.json())
@@ -252,7 +252,7 @@ function NgoEmpCheck(data)
 //     window.location.assign("Client/helpSeeker.html");
 //   }
 //   else{
-//     fetch('http://localhost:3000/seekcreate/', {
+//     fetch('http://localhost:3001/seekcreate/', {
 //         headers: {
 //             'Content-type': 'application/json'
 //         },
@@ -269,7 +269,7 @@ function NgoEmpCheck(data)
 // }
 
 function signup() {
-  fetch('http://localhost:3000/Signup/', {
+  fetch('http://localhost:3001/Signup/', {
       method: 'GET'
   })
   .then(response => response.json())
@@ -318,7 +318,7 @@ function signupp(data)
   {
     //window.location.assign("Client/Donor.html");
     console.log("user created");
-    fetch('http://localhost:3000/NewUser/', {
+    fetch('http://localhost:3001/NewUser/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -342,7 +342,7 @@ function signupp(data)
 // console.log(window.location.pathname);
 // if(window.location.pathname === "/Client/helpSeeker.html"){
 //     document.addEventListener('DOMContentLoaded', function () {
-//       fetch('http://localhost:3000/getDonationData')
+//       fetch('http://localhost:3001/getDonationData')
 //       .then(response => response.json())
 //       .then(data => loadDonations(data['data']));
     
@@ -362,7 +362,7 @@ function reqhelp() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3000/seek/', {
+  fetch('http://localhost:3001/seek/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -384,7 +384,7 @@ function donate() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3000/donate/', {
+  fetch('http://localhost:3001/donate/', {
         headers: {
             'Content-type': 'application/json'
         },

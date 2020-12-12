@@ -805,8 +805,33 @@ ul.social-footer2 li a {
     margin-bottom: 30px;
   }
 
+/* ---------------------------------------------------------- NGO Admin --------------------------------------------------- */
+.adminButton{
+  font-size: 25px;
+}
+.adminLink, .adminLink:hover{
+  text-decoration: none!important;
+  color: white;
+}
 
+#list{
+  list-style-type: none;
+}
 
+#add__new__list{
+    top: -38px;
+    right: 0px;
+}
+.helpReq{
+  background-color: #5cb85c;
+}
+.donReq{
+  background-color: #292b2c;
+  color: white;
+}
+.tableBody{
+  margin-bottom: 50px;
+}
 /* ------------------------------------------------------Media Querries For the Project -------------------------------------------------------*/
 
 @media screen and (max-width: 992px) {

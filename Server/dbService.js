@@ -4,9 +4,9 @@ let instance = null;
 const connection = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "Ovaizali110*",
+    password: "ma325ksa",
     database: "naiki",
-    port: "3000"
+    // port: "3000"
 });
 
 connection.connect((err) => {
@@ -273,6 +273,23 @@ async getNgoEmpDetails() {
     }    
 }
     
+async getAllReqData() {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = "select req.don_id, u.name, t.type_name, req.quantity, u.contact from donation_req req join sys_user u join donat_type t join seeker s where s.idSeeker = req.seeker_id and t.type_id = req.type_id and s.user_id = u.user_id;";
+
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        // console.log(response);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
 // //     async deleteAllData() {
 // //         try {
 // //             const response = await new Promise((resolve, reject) => {

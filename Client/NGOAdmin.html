@@ -207,13 +207,15 @@
   <p class="helpHead">Welcome to Admin Panel!</p>
 </div>
 <div class="container">
-  <button type="button" class="btn btn-success btn-lg btn-block adminButton">
-    <a class="adminLink" href="/Client/helpRequests.html">View Help Requests</a> 
+  <button type="button" class="btn btn-success btn-lg btn-block adminButton" onclick="loadRequest()">
+    <!-- <a class="adminLink" href="/Client/helpRequests.html">View Help Requests</a>  -->
     <span class="badge badge-primary badge-pill  pull-right" >14</span>
+    View Help Requests
   </button>
-  <button type="button" class="btn btn-secondary btn-lg btn-block adminButton">
-    <a class="adminLink" href="/Client/donationReceived.html">View Donation Received</a> 
+  <button type="button" class="btn btn-secondary btn-lg btn-block adminButton" onclick="loadDonation()">
+    <!-- <a class="adminLink" href="/Client/donationReceived.html">View Donation Received</a>  -->
     <span class="badge badge-primary badge-pill pull-right">14</span>
+    View Donation Received
   </button>
   <button type="button" class="btn btn-danger btn-lg btn-block adminButton" style="margin-bottom: 35px;">
     <a class="adminLink" href="/Client/allocateDonations.html">Allocate Donations</a> 

@@ -1,5 +1,6 @@
 // const { authenticate } = require("passport");
 
+
 // ------------------------------------------------------------------ Scroll To-Top Button ------------------------------------------------------
 var scrollToTopBtn = document.getElementById("scrollToTopBtn");
 var rootElement = document.documentElement;
@@ -169,7 +170,7 @@ jQuery(document).ready(function($){
   // --------------------------------------------------------------------------------------------------------------------
 
   function signin() {
-    fetch('http://localhost:3001/Signin/', {
+    fetch('http://localhost:3000/Signin/', {
         method: 'GET'
     })
     .then(response => response.json())
@@ -210,7 +211,7 @@ function validate(data){
     }
     if(admin.checked==true)
     {
-        fetch('http://localhost:3001/NgoEmp/' , {
+        fetch('http://localhost:3000/NgoEmp/' , {
         method: 'GET'
     })
     .then(response => response.json())
@@ -269,7 +270,7 @@ function NgoEmpCheck(data)
 // }
 
 function signup() {
-  fetch('http://localhost:3001/Signup/', {
+  fetch('http://localhost:3000/Signup/', {
       method: 'GET'
   })
   .then(response => response.json())
@@ -318,7 +319,7 @@ function signupp(data)
   {
     //window.location.assign("Client/Donor.html");
     console.log("user created");
-    fetch('http://localhost:3001/NewUser/', {
+    fetch('http://localhost:3000/NewUser/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -362,7 +363,7 @@ function reqhelp() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3001/seek/', {
+  fetch('http://localhost:3000/seek/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -384,7 +385,7 @@ function donate() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3001/donate/', {
+  fetch('http://localhost:3000/donate/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -397,7 +398,51 @@ function donate() {
             location.reload();
         }
     });
+};
+var ReqView = document.getElementById('DReq');
+// function loadRequest()
+// {
+//   window.location.assign("/Client/helpRequests.html");
+//   fetch('http://localhost:3000/getAllReq')
+//   .then(response => response.json())
+//   .then(data => {
+//     Tablebody = document.getelementbyid("Dreq");
+//     data.foreach(item => tablebody.innerhtml += `<tr><td>${item.name}</td></tr>`)
+//   })
+//   .catch(err => console.log("error" + err));
+// }
+function loadRequest()
+{
+  window.location.assign("/Client/helpRequests.html");
+  fetch('http://localhost:3000/getAllReq')
+  .then(response => response.json())
+  .then(data => loadReq(data['data']));
 }
 
+function loadReq(data)
+{
+  data.forEach(function({don_id, name, type_name, quantity, contact}){
+    var newRow = $("<tr>");
+    var cols = "";
+    var newReq = document.createElement('tr');
+    var new_id = document.createTextNode(don_id);
+    var new_name = document.createTextNode(name);
+    var new_type = document.createTextNode(type_name);
+    var new_quantity = document.createTextNode(quantity);
+    var new_contact = document.createTextNode(contact);
+    cols += '<td> '+ don_id +'</td>';
+    cols += '<td> '+ name +'</td>';
+    cols += '<td> '+ type_name +'</td>';
+    cols += '<td> '+ quantity +'</td>';
+    cols += '<td> '+ contact +'</td>';
+    newReq.append(cols);
+    $("#tableDataReq .DReq").append(newReq);
+  })
+}
+
+function loadDonation()
+{
+  window.location.assign("/Client/donationReceived.html");
+}
 //function validate(data){
   

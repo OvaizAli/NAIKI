@@ -131,6 +131,18 @@ app.get('/NgoEmp', (request, response) => {
   .catch(err => console.log(err));
 });
 
+app.get('/getAllReq', (request, response) => {
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.getAllReqData();
+  
+  result
+  // .then(data => console.log(data))
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+  // console.log('Hello');
+});
+
 // app.post('/s_d_create', (request, response) => {
 //   const { cnic } = request.body;
 //   const db = dbService.getDbServiceInstance();

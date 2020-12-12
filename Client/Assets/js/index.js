@@ -400,4 +400,72 @@ function donate() {
 }
 
 //function validate(data){
+// ------------------------------------------------- NGO Admin ---------------------------------------------------------------
+// function loadRequest(){
+//   window.location.assign("/Client/helpRequests.html");
+//   fetch('http://localhost:3001/getAllReq')
+//   .then(response => response.json())
+//   .then(data => loadReq(data['data']));
+// }
+
+if(window.location.pathname === "/Client/helpRequests.html"){
+document.addEventListener('DOMContentLoaded', function () {
+  fetch('http://localhost:3001/getAllReq')
+  .then(response => response.json())
+  .then(data => loadReq(data['data']));
   
+});
+}
+var reqList = document.getElementById('helpReqList');
+function loadReq(data)
+{
+  console.log(data);
+  data.forEach(function({don_id, name, type_name, quantity, contact}){
+    console.log(don_id, name, type_name, quantity, contact);
+    var newReq = document.createElement('tr');
+
+    var new_name = document.createElement('td');
+    var newName = document.createTextNode(name);
+    new_name.appendChild(newName);
+
+    var new_type = document.createElement('td');
+    var newType = document.createTextNode(type_name);
+    new_type.appendChild(newType);
+
+    var new_quantity = document.createElement('td');
+    var newQuantity = document.createTextNode(quantity);
+    new_quantity.appendChild(newQuantity);
+
+    var new_contact = document.createElement('td');
+    var newContact = document.createTextNode(contact);
+    new_contact.appendChild(newContact);
+
+    var new_id = document.createElement('td');
+    var newId = document.createTextNode(don_id);
+    new_id.appendChild(newId);
+    
+    newReq.appendChild(new_id);
+    newReq.appendChild(new_name);
+    newReq.appendChild(new_type);
+    newReq.appendChild(new_quantity);
+    newReq.appendChild(new_contact);
+    reqList.appendChild(newReq);
+  });
+  // data.forEach(function({don_id, name, type_name, quantity, contact}){
+    // var newRow = $("<tr>");
+    // var cols = "";
+    // var newReq = document.createElement('tr');
+    // var new_id = document.createTextNode(don_id);
+    // var new_name = document.createTextNode(name);
+    // var new_type = document.createTextNode(type_name);
+    // var new_quantity = document.createTextNode(quantity);
+    // var new_contact = document.createTextNode(contact);
+    // cols += '<td> '+ don_id +'</td>';
+    // cols += '<td> '+ name +'</td>';
+    // cols += '<td> '+ type_name +'</td>';
+    // cols += '<td> '+ quantity +'</td>';
+    // cols += '<td> '+ contact +'</td>';
+    // newReq.append(cols);
+    // $("#tableDataReq .DReq").append(newReq);
+  // })
+}

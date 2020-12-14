@@ -335,7 +335,29 @@ function signupp(data)
     });
   }
 }
+var tList = document.getElementById('validationDefault04');
+if(window.location.pathname === "/Client/Donor.html" || window.location.pathname === "/Client/helpSeeker.html")
+{
+  document.addEventListener('DOMContentLoaded', function () 
+  {
+    fetch('http://localhost:3000/getAllTypes')
+    .then(response => response.json())
+    .then(data => loadDType(data['data']));
+  });
+}
 
+function loadDType(data)
+{
+  console.log(data);
+  data.forEach(function({type_name})
+  {
+    console.log(type_name);
+    var new_type = document.createElement('option');
+    var newType = document.createTextNode(type_name);
+    new_type.appendChild(newType);
+    tList.appendChild(new_type);
+  });
+}
 // ------------------------------------------------------ Help Seeker -----------------------------------------------------
 
 // ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO

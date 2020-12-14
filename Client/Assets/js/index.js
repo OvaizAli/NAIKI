@@ -1,5 +1,6 @@
 // const { authenticate } = require("passport");
 
+
 // ------------------------------------------------------------------ Scroll To-Top Button ------------------------------------------------------
 var scrollToTopBtn = document.getElementById("scrollToTopBtn");
 var rootElement = document.documentElement;
@@ -169,7 +170,7 @@ jQuery(document).ready(function($){
   // --------------------------------------------------------------------------------------------------------------------
 
   function signin() {
-    fetch('http://localhost:3001/Signin/', {
+    fetch('http://localhost:3000/Signin/', {
         method: 'GET'
     })
     .then(response => response.json())
@@ -210,7 +211,7 @@ function validate(data){
     }
     if(admin.checked==true)
     {
-        fetch('http://localhost:3001/NgoEmp/' , {
+        fetch('http://localhost:3000/NgoEmp/' , {
         method: 'GET'
     })
     .then(response => response.json())
@@ -269,7 +270,7 @@ function NgoEmpCheck(data)
 // }
 
 function signup() {
-  fetch('http://localhost:3001/Signup/', {
+  fetch('http://localhost:3000/Signup/', {
       method: 'GET'
   })
   .then(response => response.json())
@@ -318,7 +319,7 @@ function signupp(data)
   {
     //window.location.assign("Client/Donor.html");
     console.log("user created");
-    fetch('http://localhost:3001/NewUser/', {
+    fetch('http://localhost:3000/NewUser/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -362,7 +363,7 @@ function reqhelp() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3001/seek/', {
+  fetch('http://localhost:3000/seek/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -384,7 +385,7 @@ function donate() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3001/donate/', {
+  fetch('http://localhost:3000/donate/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -397,75 +398,175 @@ function donate() {
             location.reload();
         }
     });
-}
+};
 
-//function validate(data){
-// ------------------------------------------------- NGO Admin ---------------------------------------------------------------
-// function loadRequest(){
-//   window.location.assign("/Client/helpRequests.html");
-//   fetch('http://localhost:3001/getAllReq')
-//   .then(response => response.json())
-//   .then(data => loadReq(data['data']));
-// }
-
-if(window.location.pathname === "/Client/helpRequests.html"){
-document.addEventListener('DOMContentLoaded', function () {
-  fetch('http://localhost:3001/getAllReq')
-  .then(response => response.json())
-  .then(data => loadReq(data['data']));
-  
-});
-}
 var reqList = document.getElementById('helpReqList');
-function loadReq(data)
-{
-  console.log(data);
-  data.forEach(function({don_id, name, type_name, quantity, contact}){
-    console.log(don_id, name, type_name, quantity, contact);
-    var newReq = document.createElement('tr');
-
-    var new_name = document.createElement('td');
-    var newName = document.createTextNode(name);
-    new_name.appendChild(newName);
-
-    var new_type = document.createElement('td');
-    var newType = document.createTextNode(type_name);
-    new_type.appendChild(newType);
-
-    var new_quantity = document.createElement('td');
-    var newQuantity = document.createTextNode(quantity);
-    new_quantity.appendChild(newQuantity);
-
-    var new_contact = document.createElement('td');
-    var newContact = document.createTextNode(contact);
-    new_contact.appendChild(newContact);
-
-    var new_id = document.createElement('td');
-    var newId = document.createTextNode(don_id);
-    new_id.appendChild(newId);
+if(window.location.pathname === "/Client/helpRequests.html"){
+  document.addEventListener('DOMContentLoaded', function () {
+    fetch('http://localhost:3000/getAllReq')
+    .then(response => response.json())
+    .then(data => loadReq(data['data']));
     
-    newReq.appendChild(new_id);
-    newReq.appendChild(new_name);
-    newReq.appendChild(new_type);
-    newReq.appendChild(new_quantity);
-    newReq.appendChild(new_contact);
-    reqList.appendChild(newReq);
   });
-  // data.forEach(function({don_id, name, type_name, quantity, contact}){
-    // var newRow = $("<tr>");
-    // var cols = "";
-    // var newReq = document.createElement('tr');
-    // var new_id = document.createTextNode(don_id);
-    // var new_name = document.createTextNode(name);
-    // var new_type = document.createTextNode(type_name);
-    // var new_quantity = document.createTextNode(quantity);
-    // var new_contact = document.createTextNode(contact);
-    // cols += '<td> '+ don_id +'</td>';
-    // cols += '<td> '+ name +'</td>';
-    // cols += '<td> '+ type_name +'</td>';
-    // cols += '<td> '+ quantity +'</td>';
-    // cols += '<td> '+ contact +'</td>';
-    // newReq.append(cols);
-    // $("#tableDataReq .DReq").append(newReq);
-  // })
+  }
+  
+  function loadReq(data)
+  {
+    console.log(data);
+    data.forEach(function({don_id, name, type_name, quantity, contact}){
+      console.log(don_id, name, type_name, quantity, contact);
+      var newReq = document.createElement('tr');
+  
+      var new_name = document.createElement('td');
+      var newName = document.createTextNode(name);
+      new_name.appendChild(newName);
+  
+      var new_type = document.createElement('td');
+      var newType = document.createTextNode(type_name);
+      new_type.appendChild(newType);
+  
+      var new_quantity = document.createElement('td');
+      var newQuantity = document.createTextNode(quantity);
+      new_quantity.appendChild(newQuantity);
+  
+      var new_contact = document.createElement('td');
+      var newContact = document.createTextNode(contact);
+      new_contact.appendChild(newContact);
+  
+      var new_id = document.createElement('td');
+      var newId = document.createTextNode(don_id);
+      new_id.appendChild(newId);
+      
+      newReq.appendChild(new_id);
+      newReq.appendChild(new_name);
+      newReq.appendChild(new_type);
+      newReq.appendChild(new_quantity);
+      newReq.appendChild(new_contact);
+      reqList.appendChild(newReq);
+    });
+  }
+  
+  var donatList = document.getElementById('donationList');
+  if(window.location.pathname === "/Client/donationReceived.html")
+  {
+    document.addEventListener('DOMContentLoaded', function () 
+    {
+      fetch('http://localhost:3000/getAllDonat')
+      .then(response => response.json())
+      .then(data => loadDon(data['data']));
+    });
+  }
+  
+  function loadDon(data)
+  {
+    console.log(data);
+    data.forEach(function({donat_id, name, type_name, quantity, contact}){
+      console.log(donat_id, name, type_name, quantity, contact);
+      var newDon = document.createElement('tr');
+  
+      var new_id = document.createElement('td');
+      var newId = document.createTextNode(donat_id);
+      new_id.appendChild(newId);
+
+      var new_name = document.createElement('td');
+      var newName = document.createTextNode(name);
+      new_name.appendChild(newName);
+  
+      var new_type = document.createElement('td');
+      var newType = document.createTextNode(type_name);
+      new_type.appendChild(newType);
+  
+      var new_quantity = document.createElement('td');
+      var newQuantity = document.createTextNode(quantity);
+      new_quantity.appendChild(newQuantity);
+  
+      var new_contact = document.createElement('td');
+      var newContact = document.createTextNode(contact);
+      new_contact.appendChild(newContact);
+      
+      newDon.appendChild(new_id);
+      newDon.appendChild(new_name);
+      newDon.appendChild(new_type);
+      newDon.appendChild(new_quantity);
+      newDon.appendChild(new_contact);
+      donatList.appendChild(newDon);
+    });
+  }
+
+
+  var TypeList = document.getElementById('type_id');
+  if(window.location.pathname === "/Client/allocateDonations.html")
+  {
+    document.addEventListener('DOMContentLoaded', function () 
+    {
+      fetch('http://localhost:3000/getAllTypes')
+      .then(response => response.json())
+      .then(data => loadType(data['data']));
+    });
+  }
+
+  function loadType(data)
+  {
+    console.log(data);
+    data.forEach(function({type_name}){
+      console.log(type_name);
+      // var newDon = document.createElement('option');
+  
+      var new_type = document.createElement('option');
+      var newType = document.createTextNode(type_name);
+      new_type.appendChild(newType);
+
+      TypeList.appendChild(new_type);
+    });
+    
+    var typ = document.getElementById('type_id').value;
+    console.log(typ);
+    if(typ)
+      sType(typ);
+  }
+function sType(typ)
+{
+  fetch('http://localhost:3000/SetType/', {
+    headers: {
+        'Content-type': 'application/json'
+    },
+    method: 'POST',
+    body: JSON.stringify({ type: typ})
+  })
+  fetch('http://localhost:3000/DonorList')
+  .then(response => response.json())
+  .then(data => loadDonor(data['data']));
 }
+  var DonorList = document.getElementById('D_cnic');
+  // if(window.location.pathname === "/Client/allocateDonations.html")
+  // {
+  //   var typ = document.getElementById('validationDefault03').value;
+  //   console.log("xys"+typ);
+  //   document.addEventListener('DOMContentLoaded', function () 
+  //   {
+  //     fetch('http://localhost:3000/DonorList/', {
+  //       headers: {
+  //           'Content-type': 'application/json'
+  //       },
+  //       method: 'POST',
+  //       body: JSON.stringify({ type: typ})
+  //   })
+  //     .then(response => response.json())
+  //     .then(data => loadDonor(data['data']));
+  //   });
+  // }
+
+  function loadDonor(data)
+  {
+    console.log(data);
+    data.forEach(function({cnic}){
+      console.log(cnic);
+      // var newDon = document.createElement('option');
+  
+      var new_donor = document.createElement('option');
+      var newdonor = document.createTextNode(cnic);
+      new_donor.appendChild(newdonor);
+
+      DonorList.appendChild(new_donor);
+    });
+  }

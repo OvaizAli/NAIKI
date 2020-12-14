@@ -137,11 +137,49 @@ app.get('/getAllReq', (request, response) => {
   const result = db.getAllReqData();
   
   result
-  // .then(data => console.log(data))
   .then(data => response.json({data : data}))
   .catch(err => console.log(err));
-  // console.log('Hello');
 });
+
+app.get('/getAllDonat', (request, response) => {
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.getAllDonatData();
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
+app.get('/getAllTypes', (request, response) => {
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.getAllTypeData();
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
+var type = null;
+app.post('/SetType', (request, response)=>{
+  console.log(request.body);
+  type = request.body;
+  console.log("check");
+  console.log(type);
+});
+
+app.get('/DonorList', (request, response)=>{
+  console.log("sds"+type);
+  const db =  dbService.getDbServiceInstance();
+  const result = db.dispDonor(type);
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
+
+
 
 // app.post('/s_d_create', (request, response) => {
 //   const { cnic } = request.body;
@@ -214,6 +252,6 @@ app.use(session({
 }));
 
 
-app.listen(3001, () => console.log('app is running'));
+app.listen(3000, () => console.log('app is running'));
 
 

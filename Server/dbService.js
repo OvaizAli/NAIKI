@@ -4,9 +4,9 @@ let instance = null;
 const connection = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "Ovaizali110*",
+    password: "ma325ksa",
     database: "naiki",
-    port: "3000"
+    // port: "3000"
 });
 
 connection.connect((err) => {
@@ -288,6 +288,64 @@ async getAllReqData() {
         console.log(error);
     }
 }   
+
+async getAllDonatData() {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = "select don.donat_id, u.name, t.type_name, don.quantity, u.contact from donation don join sys_user u join donat_type t join donor d where d.idDonor = don.donor_id and t.type_id = don.type_id and d.user_id = u.user_id; ";
+
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        // console.log(response);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async getAllTypeData() {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = "select type_name from donat_type;";
+
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        // console.log(response);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async dispDonor(type) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            var typ;
+            const sql = 'select type_id from donat_type where type_name = ?'
+            connection.query(sql, type,(err, results)=> {
+                if(err) throw err;
+                typ = results[0].type_id;
+                console.log(typ);
+                const query = `select u.cnic from sys_user u join donor d join donation don join donat_type t where u.user_id = d.user_id and d.idDonor = don.donor_id and don.type_id = ${typ};`;
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            })            
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 // //     async deleteAllData() {
 // //         try {
 // //             const response = await new Promise((resolve, reject) => {

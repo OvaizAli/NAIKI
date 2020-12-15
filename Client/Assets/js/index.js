@@ -170,7 +170,7 @@ jQuery(document).ready(function($){
   // --------------------------------------------------------------------------------------------------------------------
 
   function signin() {
-    fetch('http://localhost:3000/Signin/', {
+    fetch('http://localhost:3001/Signin/', {
         method: 'GET'
     })
     .then(response => response.json())
@@ -211,7 +211,7 @@ function validate(data){
     }
     if(admin.checked==true)
     {
-        fetch('http://localhost:3000/NgoEmp/' , {
+        fetch('http://localhost:3001/NgoEmp/' , {
         method: 'GET'
     })
     .then(response => response.json())
@@ -270,7 +270,7 @@ function NgoEmpCheck(data)
 // }
 
 function signup() {
-  fetch('http://localhost:3000/Signup/', {
+  fetch('http://localhost:3001/Signup/', {
       method: 'GET'
   })
   .then(response => response.json())
@@ -319,7 +319,7 @@ function signupp(data)
   {
     //window.location.assign("Client/Donor.html");
     console.log("user created");
-    fetch('http://localhost:3000/NewUser/', {
+    fetch('http://localhost:3001/NewUser/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -340,7 +340,7 @@ if(window.location.pathname === "/Client/Donor.html" || window.location.pathname
 {
   document.addEventListener('DOMContentLoaded', function () 
   {
-    fetch('http://localhost:3000/getAllTypes')
+    fetch('http://localhost:3001/getAllTypes')
     .then(response => response.json())
     .then(data => loadDType(data['data']));
   });
@@ -359,25 +359,6 @@ function loadDType(data)
   });
 }
 // ------------------------------------------------------ Help Seeker -----------------------------------------------------
-
-// ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
-
-// console.log(window.location.pathname);
-// if(window.location.pathname === "/Client/helpSeeker.html"){
-//     document.addEventListener('DOMContentLoaded', function () {
-//       fetch('http://localhost:3001/getDonationData')
-//       .then(response => response.json())
-//       .then(data => loadDonations(data['data']));
-    
-// })};
-// function loadDonations(data, text) {
-//   console.log(text)
-//   data.forEach(function ({type_name}) {
-//     console.log(type_name);
-//     document.getElementById("donationTitle").innerHTML = type_name;
-// });
-// }}
-
 function reqhelp() {
   console.log(window.location.pathname);
   var Name = document.getElementById("validationDefault01").value;
@@ -385,7 +366,7 @@ function reqhelp() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3000/seek/', {
+  fetch('http://localhost:3001/seek/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -407,7 +388,7 @@ function donate() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3000/donate/', {
+  fetch('http://localhost:3001/donate/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -425,7 +406,7 @@ function donate() {
 var reqList = document.getElementById('helpReqList');
 if(window.location.pathname === "/Client/helpRequests.html"){
   document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost:3000/getAllReq')
+    fetch('http://localhost:3001/getAllReq')
     .then(response => response.json())
     .then(data => loadReq(data['data']));
     
@@ -473,7 +454,7 @@ if(window.location.pathname === "/Client/helpRequests.html"){
   {
     document.addEventListener('DOMContentLoaded', function () 
     {
-      fetch('http://localhost:3000/getAllDonat')
+      fetch('http://localhost:3001/getAllDonat')
       .then(response => response.json())
       .then(data => loadDon(data['data']));
     });
@@ -515,13 +496,14 @@ if(window.location.pathname === "/Client/helpRequests.html"){
     });
   }
 
+// ----------------------------------------------------------------- Allocate Donation ---------------------------------------------
 
   var TypeList = document.getElementById('type_id');
   if(window.location.pathname === "/Client/allocateDonations.html")
   {
     document.addEventListener('DOMContentLoaded', function () 
     {
-      fetch('http://localhost:3000/getAllTypes')
+      fetch('http://localhost:3001/getAllTypes')
       .then(response => response.json())
       .then(data => loadType(data['data']));
     });
@@ -529,9 +511,9 @@ if(window.location.pathname === "/Client/helpRequests.html"){
 
   function loadType(data)
   {
-    console.log(data);
+    // console.log(data);
     data.forEach(function({type_name}){
-      console.log(type_name);
+      // console.log(type_name);
       // var newDon = document.createElement('option');
   
       var new_type = document.createElement('option');
@@ -543,40 +525,32 @@ if(window.location.pathname === "/Client/helpRequests.html"){
   }
   
   function T_search(){
-    var typ = document.getElementById('type_id').value;
-    console.log("abc"+typ);
-    sType(typ);
-    DList();
-    // SList();
-  }
-  
-  function sType(typ)
-  {
-    console.log(typ);
-    fetch('http://localhost:3000/SetType/', {
-      headers: {
-          'Content-type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify({ type: typ})
-    })
-  }
-  
-  function DList()
-  {
-    fetch('http://localhost:3000/DonorList')
+    var type = document.getElementById('type_id').value;
+    // console.log(type);
+    // document.getElementById('D_cnic').innerHTML = "";
+    document.getElementById('D_amount').value= "";
+    document.getElementById('R_amount').value= "";
+    fetch('http://localhost:3001/DonorList/' + type, {
+       method: 'GET'
+      })
     .then(response => response.json())
     .then(data => loadDonor(data['data']));
   }
+    
   
   var DonorList = document.getElementById('D_cnic');
   function loadDonor(data)
   {
-    console.log(data);
+    // console.log(data);
+    document.getElementById('D_cnic').innerHTML = "";
+    var new_donor = document.createElement('option');
+    var newdonor = document.createTextNode('Choose...');
+    new_donor.appendChild(newdonor);
+
+    DonorList.appendChild(new_donor);
+    
     data.forEach(function({cnic}){
-      console.log(cnic);
       // var newDon = document.createElement('option');
-  
       var new_donor = document.createElement('option');
       var newdonor = document.createTextNode(cnic);
       new_donor.appendChild(newdonor);
@@ -588,43 +562,29 @@ if(window.location.pathname === "/Client/helpRequests.html"){
   function D_search()
   {
     var Dcnic = document.getElementById('D_cnic').value;
-    console.log(Dcnic);
-    d_cnic(Dcnic);
-    d_amount();
-    SList();
-  }
-
-  function d_cnic(Dcnic)
-  {
-    console.log(Dcnic);
-    fetch('http://localhost:3000/SetCnic/', {
-      headers: {
-          'Content-type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify({ cnic: Dcnic})
-    })
-  }
-
-  function d_amount()
-  {
-    fetch('http://localhost:3000/DonorAmount')
+    var type = document.getElementById('type_id').value;
+    // console.log(type, Dcnic);
+    fetch('http://localhost:3001/DonorAmount/' + Dcnic, {
+       method: 'GET'
+      })
     .then(response => response.json())
     .then(data => loadAmount(data['data']));
   }
 
-  var DAmount = document.getElementById('D_amount');
-  function loadAmount(data)
-  {
+  function loadAmount(data){ 
     data.forEach(function({quantity}){
-      console.log(quantity);
-      document.getElementById('D_amount').innerHTML=quantity;
+      document.getElementById('D_amount').value= quantity;
     });
+    SList();
   }
 
   function SList()
   {
-    fetch('http://localhost:3000/SeekerList')
+    var type = document.getElementById('type_id').value;
+    // console.log(type)
+    fetch('http://localhost:3001/SeekerList/' + type, {
+       method: 'GET'
+      })
     .then(response => response.json())
     .then(data => loadSeeker(data['data']));
   }
@@ -632,9 +592,15 @@ if(window.location.pathname === "/Client/helpRequests.html"){
   var SeekerList = document.getElementById('S_cnic');
   function loadSeeker(data)
   {
-    console.log(data);
+    // console.log("SList");
+    document.getElementById('S_cnic').innerHTML = "";
+    var new_seeker = document.createElement('option');
+    var newseeker = document.createTextNode("Choose...");
+    new_seeker.appendChild(newseeker);
+
+    SeekerList.appendChild(new_seeker);
     data.forEach(function({cnic}){
-      console.log(cnic);
+      // console.log(cnic);
       // var newDon = document.createElement('option');
   
       var new_seeker = document.createElement('option');
@@ -643,31 +609,16 @@ if(window.location.pathname === "/Client/helpRequests.html"){
 
       SeekerList.appendChild(new_seeker);
     });
-  }
 
-  function S_search()
-  {
-    var Scnic = document.getElementById('S_cnic').value;
-    console.log(Scnic);
-    S_cnic(Scnic);
-    S_amount();
-  }
-
-  function S_cnic(Scnic)
-  {
-    console.log(Scnic);
-    fetch('http://localhost:3000/Set_S_Cnic/', {
-      headers: {
-          'Content-type': 'application/json'
-      },
-      method: 'POST',
-      body: JSON.stringify({ cnic: Scnic})
-    })
   }
 
   function S_amount()
   {
-    fetch('http://localhost:3000/ReqAmount')
+    var cnic = document.getElementById('S_cnic').value;
+    // console.log(cnic);
+    fetch('http://localhost:3001/ReqAmount/' + cnic, {
+       method: 'GET'
+      })
     .then(response => response.json())
     .then(data => loadReqAmount(data['data']));
   }
@@ -675,9 +626,10 @@ if(window.location.pathname === "/Client/helpRequests.html"){
   var SAmount = document.getElementById('R_amount');
   function loadReqAmount(data)
   {
+    // console.log(data);
     data.forEach(function({quantity}){
-      console.log(quantity);
-      document.getElementById('R_amount').innerHTML=quantity;
+      // console.log(quantity);
+      document.getElementById('R_amount').value=quantity;
     });
   }
 

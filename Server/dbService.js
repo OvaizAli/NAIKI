@@ -4,9 +4,9 @@ let instance = null;
 const connection = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "ma325ksa",
+    password: "Ovaizali110*",
     database: "naiki",
-    // port: "3000"
+    port: "3000"
 });
 
 connection.connect((err) => {
@@ -39,7 +39,6 @@ class DbService {
         }
     }
 
-    // ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
     async getDonationData() {
         try {
             const response = await new Promise((resolve, reject) => {
@@ -326,12 +325,11 @@ async getAllTypeData() {
 async dispDonor(type) {
     try {
         const response = await new Promise((resolve, reject) => {
-            var typ;
             const sql = 'select type_id from donat_type where type_name = ?'
             connection.query(sql, type,(err, results)=> {
                 if(err) throw err;
-                typ = results[0].type_id;
-                console.log(typ);
+                var typ = results[0].type_id;
+                // console.log(typ);
                 const query = `select distinct u.cnic from sys_user u join donor d join donation don where u.user_id = d.user_id and d.idDonor = don.donor_id and don.type_id = ${typ};`;
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
@@ -385,6 +383,7 @@ async dispAmount(cnic) {
 
 async disp_Req_Amount(cnic) {
     try {
+        // console.log(cnic);
         const response = await new Promise((resolve, reject) => {
         const query = `select req.quantity from sys_user u join donation_req req join seeker s 
         where req.seeker_id = s.idSeeker and s.user_id = u.user_id and u.cnic = ${cnic} and req.quantity>0 limit 1;`;

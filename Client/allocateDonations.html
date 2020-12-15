@@ -213,38 +213,38 @@
         <label for="validationDefault03">Phone No.</label>
         <input type="text" class="form-control" id="validationDefault03" required>
       </div> -->
-      <div class="col-md-3 mb-3">
+      <div class="col-md-4 mb-4">
         <label for="validationDefault04">Donation Type</label>
-        <select class="custom-select" id="type_id" required>
+        <select class="custom-select" id="type_id" onchange="T_search()" required>
           <option selected disabled value="">Choose...</option>
         </select>
       </div>
-      <div class="col-md-1 mb-1">
+      <!-- <div class="col-md-1 mb-1">
         <br>
         <button style="margin:10px ;" class="btn btn-dark btn-sm" type="" onclick="T_search()"><i class="fa fa-list-alt" aria-hidden="true"></i></button>
-      </div>
-      <div class="col-md-3 mb-3">
+      </div> -->
+      <div class="col-md-4 mb-4">
         <label for="validationDefault04">Donor CNIC No.</label>
-        <select class="custom-select" id="D_cnic" required>
+        <select class="custom-select" id="D_cnic" onchange="D_search()" required>
           <option selected disabled value="">Choose...</option>
           <!-- <option>...</option> -->
         </select>
       </div>
-      <div class="col-md-1 mb-1">
+      <!-- <div class="col-md-1 mb-1">
         <br>
         <button style="margin:10px ;" class="btn btn-dark btn-sm" type="" onclick="D_search()"><i class="fa fa-search-plus" aria-hidden="true"></i></button>
-      </div>
-      <div class="col-md-3 mb-3">
+      </div> -->
+      <div class="col-md-4 mb-4">
         <label for="validationDefault04">Help Seeker CNIC No.</label>
-        <select class="custom-select" id="S_cnic" required>
+        <select class="custom-select" id="S_cnic" onchange="S_amount()" required>
           <option selected disabled value="">Choose...</option>
           <!-- <option>...</option> -->
         </select>
       </div>
-      <div class="col-md-1 mb-1">
+      <!-- <div class="col-md-1 mb-1">
         <br>
-        <button style="margin:10px ;" class="btn btn-dark btn-sm" type="" onclick="S_search()"><i class="fa fa-id-card" aria-hidden="true"></i></button>
-      </div>
+        <button style="margin:10px ;" class="btn btn-dark btn-sm" type=""><i class="fa fa-id-card" aria-hidden="true"></i></button>
+      </div> -->
     </div>
     <div class="form-row">
       <div class="col-md-6 mb-6">

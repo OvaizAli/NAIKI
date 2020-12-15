@@ -28,7 +28,7 @@ app.use(express.urlencoded({ extended : false }));
   // })
 
 
-// // Create
+
 app.get('/Signin', (request, response) => {
         const db = dbService.getDbServiceInstance();
 
@@ -51,7 +51,6 @@ app.get('/Signup', (request, response) => {
   }
 );
 
-// ZAEEM THIS FUNCTION IMPLEMENTATION CAN HELP YOU, CHECK OTHER COMMENTED TOO
 app.get('/getDonationData', (request, response) => {
       const db = dbService.getDbServiceInstance();
       const result = db.getDonationData();
@@ -161,64 +160,43 @@ app.get('/getAllTypes', (request, response) => {
   .catch(err => console.log(err));
 });
 
-var typ = null;
-app.post('/SetType', (request, response)=>{
-  const {type} = request.body;
-  typ = type;
-  console.log(type);
-  console.log("check");
-  console.log(typ);
-});
-
-app.get('/DonorList', (request, response)=>{
-  console.log("sds"+typ);
+app.get('/DonorList/:type', (request, response)=>{
+  const { type } = request.params;
+  // console.log("DL: ", type);
   const db =  dbService.getDbServiceInstance();
-  const result = db.dispDonor(typ);
+  const result = db.dispDonor(type);
   result
   .then(data => response.json({data : data}))
   .catch(err => console.log(err));
 });
 
-var c = null;
-app.post('/SetCnic', (request, response)=>{
-  const {cnic} = request.body;
-  c = cnic;
-  console.log(cnic);
-  console.log("check");
-  console.log(c);
-});
-
-app.get('/DonorAmount', (request, response)=>{
-  console.log("ccc"+c);
+var cnic;
+app.get('/DonorAmount/:Dcnic', (request, response)=>{
+  const { Dcnic } = request.params;
+  cnic = Dcnic;
+  // console.log(Dcnic);
   const db =  dbService.getDbServiceInstance();
-  const result = db.dispAmount(c);
+  const result = db.dispAmount(Dcnic);
   result
   .then(data => response.json({data : data}))
   .catch(err => console.log(err));
 });
 
-app.get('/SeekerList', (request, response)=>{
-  console.log("sas"+typ);
+app.get('/SeekerList/:type', (request, response)=>{
+  const { type } = request.params;
+  // console.log(cnic, type);
   const db =  dbService.getDbServiceInstance();
-  const result = db.dispSeeker(typ,c);
+  const result = db.dispSeeker(type,cnic);
   result
   .then(data => response.json({data : data}))
   .catch(err => console.log(err));
 });
 
-var sc = null;
-app.post('/Set_S_Cnic', (request, response)=>{
-  const {cnic} = request.body;
-  sc = cnic;
-  console.log(cnic);
-  console.log("scheck");
-  console.log(sc);
-});
-
-app.get('/ReqAmount', (request, response)=>{
-  console.log("s"+sc);
+app.get('/ReqAmount/:cnic', (request, response)=>{
+  const { cnic } = request.params;
+  // console.log(cnic);
   const db =  dbService.getDbServiceInstance();
-  const result = db.disp_Req_Amount(sc);
+  const result = db.disp_Req_Amount(cnic);
   result
   .then(data => response.json({data : data}))
   .catch(err => console.log(err));
@@ -295,6 +273,6 @@ app.use(session({
 }));
 
 
-app.listen(3000, () => console.log('app is running'));
+app.listen(3001, () => console.log('app is running'));
 
 

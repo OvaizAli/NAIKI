@@ -161,25 +161,68 @@ app.get('/getAllTypes', (request, response) => {
   .catch(err => console.log(err));
 });
 
-var type = null;
+var typ = null;
 app.post('/SetType', (request, response)=>{
-  console.log(request.body);
-  type = request.body;
-  console.log("check");
+  const {type} = request.body;
+  typ = type;
   console.log(type);
+  console.log("check");
+  console.log(typ);
 });
 
 app.get('/DonorList', (request, response)=>{
-  console.log("sds"+type);
+  console.log("sds"+typ);
   const db =  dbService.getDbServiceInstance();
-  const result = db.dispDonor(type);
+  const result = db.dispDonor(typ);
   result
   .then(data => response.json({data : data}))
   .catch(err => console.log(err));
 });
 
+var c = null;
+app.post('/SetCnic', (request, response)=>{
+  const {cnic} = request.body;
+  c = cnic;
+  console.log(cnic);
+  console.log("check");
+  console.log(c);
+});
 
+app.get('/DonorAmount', (request, response)=>{
+  console.log("ccc"+c);
+  const db =  dbService.getDbServiceInstance();
+  const result = db.dispAmount(c);
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
 
+app.get('/SeekerList', (request, response)=>{
+  console.log("sas"+typ);
+  const db =  dbService.getDbServiceInstance();
+  const result = db.dispSeeker(typ,c);
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
+var sc = null;
+app.post('/Set_S_Cnic', (request, response)=>{
+  const {cnic} = request.body;
+  sc = cnic;
+  console.log(cnic);
+  console.log("scheck");
+  console.log(sc);
+});
+
+app.get('/ReqAmount', (request, response)=>{
+  console.log("s"+sc);
+  const db =  dbService.getDbServiceInstance();
+  const result = db.disp_Req_Amount(sc);
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
 
 // app.post('/s_d_create', (request, response) => {
 //   const { cnic } = request.body;

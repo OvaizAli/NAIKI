@@ -540,44 +540,36 @@ if(window.location.pathname === "/Client/helpRequests.html"){
 
       TypeList.appendChild(new_type);
     });
-    
-    var typ = document.getElementById('type_id').value;
-    console.log(typ);
-    if(typ)
-      sType(typ);
   }
-function sType(typ)
-{
-  fetch('http://localhost:3000/SetType/', {
-    headers: {
-        'Content-type': 'application/json'
-    },
-    method: 'POST',
-    body: JSON.stringify({ type: typ})
-  })
-  fetch('http://localhost:3000/DonorList')
-  .then(response => response.json())
-  .then(data => loadDonor(data['data']));
-}
+  
+  function T_search(){
+    var typ = document.getElementById('type_id').value;
+    console.log("abc"+typ);
+    sType(typ);
+    DList();
+    // SList();
+  }
+  
+  function sType(typ)
+  {
+    console.log(typ);
+    fetch('http://localhost:3000/SetType/', {
+      headers: {
+          'Content-type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({ type: typ})
+    })
+  }
+  
+  function DList()
+  {
+    fetch('http://localhost:3000/DonorList')
+    .then(response => response.json())
+    .then(data => loadDonor(data['data']));
+  }
+  
   var DonorList = document.getElementById('D_cnic');
-  // if(window.location.pathname === "/Client/allocateDonations.html")
-  // {
-  //   var typ = document.getElementById('validationDefault03').value;
-  //   console.log("xys"+typ);
-  //   document.addEventListener('DOMContentLoaded', function () 
-  //   {
-  //     fetch('http://localhost:3000/DonorList/', {
-  //       headers: {
-  //           'Content-type': 'application/json'
-  //       },
-  //       method: 'POST',
-  //       body: JSON.stringify({ type: typ})
-  //   })
-  //     .then(response => response.json())
-  //     .then(data => loadDonor(data['data']));
-  //   });
-  // }
-
   function loadDonor(data)
   {
     console.log(data);
@@ -592,3 +584,100 @@ function sType(typ)
       DonorList.appendChild(new_donor);
     });
   }
+  
+  function D_search()
+  {
+    var Dcnic = document.getElementById('D_cnic').value;
+    console.log(Dcnic);
+    d_cnic(Dcnic);
+    d_amount();
+    SList();
+  }
+
+  function d_cnic(Dcnic)
+  {
+    console.log(Dcnic);
+    fetch('http://localhost:3000/SetCnic/', {
+      headers: {
+          'Content-type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({ cnic: Dcnic})
+    })
+  }
+
+  function d_amount()
+  {
+    fetch('http://localhost:3000/DonorAmount')
+    .then(response => response.json())
+    .then(data => loadAmount(data['data']));
+  }
+
+  var DAmount = document.getElementById('D_amount');
+  function loadAmount(data)
+  {
+    data.forEach(function({quantity}){
+      console.log(quantity);
+      document.getElementById('D_amount').innerHTML=quantity;
+    });
+  }
+
+  function SList()
+  {
+    fetch('http://localhost:3000/SeekerList')
+    .then(response => response.json())
+    .then(data => loadSeeker(data['data']));
+  }
+  
+  var SeekerList = document.getElementById('S_cnic');
+  function loadSeeker(data)
+  {
+    console.log(data);
+    data.forEach(function({cnic}){
+      console.log(cnic);
+      // var newDon = document.createElement('option');
+  
+      var new_seeker = document.createElement('option');
+      var newseeker = document.createTextNode(cnic);
+      new_seeker.appendChild(newseeker);
+
+      SeekerList.appendChild(new_seeker);
+    });
+  }
+
+  function S_search()
+  {
+    var Scnic = document.getElementById('S_cnic').value;
+    console.log(Scnic);
+    S_cnic(Scnic);
+    S_amount();
+  }
+
+  function S_cnic(Scnic)
+  {
+    console.log(Scnic);
+    fetch('http://localhost:3000/Set_S_Cnic/', {
+      headers: {
+          'Content-type': 'application/json'
+      },
+      method: 'POST',
+      body: JSON.stringify({ cnic: Scnic})
+    })
+  }
+
+  function S_amount()
+  {
+    fetch('http://localhost:3000/ReqAmount')
+    .then(response => response.json())
+    .then(data => loadReqAmount(data['data']));
+  }
+
+  var SAmount = document.getElementById('R_amount');
+  function loadReqAmount(data)
+  {
+    data.forEach(function({quantity}){
+      console.log(quantity);
+      document.getElementById('R_amount').innerHTML=quantity;
+    });
+  }
+

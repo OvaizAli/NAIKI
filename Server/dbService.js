@@ -332,7 +332,7 @@ async dispDonor(type) {
                 if(err) throw err;
                 typ = results[0].type_id;
                 console.log(typ);
-                const query = `select u.cnic from sys_user u join donor d join donation don join donat_type t where u.user_id = d.user_id and d.idDonor = don.donor_id and don.type_id = ${typ};`;
+                const query = `select distinct u.cnic from sys_user u join donor d join donation don where u.user_id = d.user_id and d.idDonor = don.donor_id and don.type_id = ${typ};`;
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
@@ -345,6 +345,59 @@ async dispDonor(type) {
     }
 }
 
+async dispSeeker(type,dcnic) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            var typ;
+            const sql = 'select type_id from donat_type where type_name = ?'
+            connection.query(sql, type,(err, results)=> {
+                if(err) throw err;
+                typ = results[0].type_id;
+                console.log(typ);
+                const query = `select  distinct u.cnic from sys_user u join seeker s join donation_req req where u.user_id = s.user_id and s.idSeeker = req.seeker_id and req.type_id = ${typ} and u.cnic <> ${dcnic};`;
+                connection.query(query, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            })            
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async dispAmount(cnic) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+        const query = `select don.quantity from sys_user u join donation don join donor d 
+        where don.donor_id = d.idDonor and d.user_id = u.user_id and u.cnic = ${cnic} and don.quantity>0 limit 1;`;
+        connection.query(query, (err, results) => {
+            if (err) reject(new Error(err.message));
+            resolve(results);
+            })           
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async disp_Req_Amount(cnic) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+        const query = `select req.quantity from sys_user u join donation_req req join seeker s 
+        where req.seeker_id = s.idSeeker and s.user_id = u.user_id and u.cnic = ${cnic} and req.quantity>0 limit 1;`;
+        connection.query(query, (err, results) => {
+            if (err) reject(new Error(err.message));
+            resolve(results);
+            })           
+        });
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
 
 // //     async deleteAllData() {
 // //         try {

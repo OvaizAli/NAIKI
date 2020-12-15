@@ -4,9 +4,9 @@ let instance = null;
 const connection = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "Ovaizali110*",
+    password: "ma325ksa",
     database: "naiki",
-    port: "3000"
+    //port: "3000"
 });
 
 connection.connect((err) => {
@@ -398,6 +398,56 @@ async disp_Req_Amount(cnic) {
     }
 }
 
+async insertMatch(type, don_cnic, seek_cnic, don_amount, req_amount){
+    try{
+        const response = await new Promise((resolve, reject) => {
+            var s_id;
+            var d_id;
+            var dona_id;
+            let query = `select don_id from donation_req req where req.seeker_id in (select s.idSeeker from seeker s where s.user_id = ( select u.user_id from sys_user u where u.cnic = ${seek_cnic})) and req.type_id = (select t.type_id from donat_type t where t.type_name = "${type}") and quantity = ${req_amount};`;
+            connection.query(query,(err,results)=> {
+                if(err) throw err;
+                s_id = results[0].don_id;
+                console.log(s_id+"sid");
+                query = `select donor_id, donat_id from donation where type_id = (select type_id from donat_type where type_name = "${type}") and quantity = ${don_amount} limit 1;`;
+                connection.query(query,(err,results)=>{
+                    if(err) throw err;
+                    d_id = results[0].donor_id;
+                    dona_id = results[0].donat_id;
+                    console.log(d_id+"did");
+                    console.log(dona_id+"dona_id");
+                    var rem_s = req_amount - don_amount;
+                    if(rem_s<0)
+                        rem_s = 0;
+                    var rem_d = don_amount - req_amount;
+                    if(rem_d<0)
+                        rem_d = 0;
+                    console.log(rem_s+"rem_s");
+                    console.log(rem_d+"rem_d");
+                    let sql = `insert into don_details(don_id, donor_id, donat_amount, rem_amount) values(${s_id}, ${d_id}, ${don_amount}, ${rem_s});`;
+                    connection.query(sql, (err,results)=>{
+                        if(err) throw err;
+                        sql = `update donation set quantity = ${rem_d} where donat_id = ${dona_id};`;
+                        connection.query(sql, function(err,result)
+                        {
+                            if(err) throw err;
+                            sql = `update donation_req set quantity = ${rem_s} where don_id = ${s_id};`;
+                            connection.query(sql, function(err,result)
+                            {
+                                if(err) throw err;
+                                resolve(result.insertId);
+                                return result.insertId;
+                            });
+                    
+                        });
+                    })
+                })
+            })
+        });
+    } catch (error){
+        console.log(error);
+    }
+}
 // //     async deleteAllData() {
 // //         try {
 // //             const response = await new Promise((resolve, reject) => {

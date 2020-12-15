@@ -202,6 +202,14 @@ app.get('/ReqAmount/:cnic', (request, response)=>{
   .catch(err => console.log(err));
 });
 
+app.post('/NewMatch', (request, response)=>{
+  const {type, don_cnic, seek_cnic, don_amount, req_amount} = request.body;
+  const db =  dbService.getDbServiceInstance();
+  const result = db.insertMatch(type, don_cnic, seek_cnic, don_amount, req_amount);
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
 // app.post('/s_d_create', (request, response) => {
 //   const { cnic } = request.body;
 //   const db = dbService.getDbServiceInstance();
@@ -273,6 +281,6 @@ app.use(session({
 }));
 
 
-app.listen(3001, () => console.log('app is running'));
+app.listen(3000, () => console.log('app is running'));
 
 

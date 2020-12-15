@@ -170,7 +170,7 @@ jQuery(document).ready(function($){
   // --------------------------------------------------------------------------------------------------------------------
 
   function signin() {
-    fetch('http://localhost:3001/Signin/', {
+    fetch('http://localhost:3000/Signin/', {
         method: 'GET'
     })
     .then(response => response.json())
@@ -203,7 +203,7 @@ function validate(data){
     if(seeker.checked==true)
     {
       window.location.assign("Client/helpSeeker.html");
-    //   fetch('http://localhost:3001/Seekcheck/' , {
+    //   fetch('http://localhost:3000/Seekcheck/' , {
     //     method: 'GET'
     // })
     // .then(response => response.json())
@@ -211,7 +211,7 @@ function validate(data){
     }
     if(admin.checked==true)
     {
-        fetch('http://localhost:3001/NgoEmp/' , {
+        fetch('http://localhost:3000/NgoEmp/' , {
         method: 'GET'
     })
     .then(response => response.json())
@@ -253,7 +253,7 @@ function NgoEmpCheck(data)
 //     window.location.assign("Client/helpSeeker.html");
 //   }
 //   else{
-//     fetch('http://localhost:3001/seekcreate/', {
+//     fetch('http://localhost:3000/seekcreate/', {
 //         headers: {
 //             'Content-type': 'application/json'
 //         },
@@ -270,7 +270,7 @@ function NgoEmpCheck(data)
 // }
 
 function signup() {
-  fetch('http://localhost:3001/Signup/', {
+  fetch('http://localhost:3000/Signup/', {
       method: 'GET'
   })
   .then(response => response.json())
@@ -319,7 +319,7 @@ function signupp(data)
   {
     //window.location.assign("Client/Donor.html");
     console.log("user created");
-    fetch('http://localhost:3001/NewUser/', {
+    fetch('http://localhost:3000/NewUser/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -340,7 +340,7 @@ if(window.location.pathname === "/Client/Donor.html" || window.location.pathname
 {
   document.addEventListener('DOMContentLoaded', function () 
   {
-    fetch('http://localhost:3001/getAllTypes')
+    fetch('http://localhost:3000/getAllTypes')
     .then(response => response.json())
     .then(data => loadDType(data['data']));
   });
@@ -366,7 +366,7 @@ function reqhelp() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3001/seek/', {
+  fetch('http://localhost:3000/seek/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -388,7 +388,7 @@ function donate() {
   var city =  document.getElementById("validationDefault03").value;
   var type =  document.getElementById("validationDefault04").value;
   var quantity =  (document.getElementById("validationDefault05").value);
-  fetch('http://localhost:3001/donate/', {
+  fetch('http://localhost:3000/donate/', {
         headers: {
             'Content-type': 'application/json'
         },
@@ -406,7 +406,7 @@ function donate() {
 var reqList = document.getElementById('helpReqList');
 if(window.location.pathname === "/Client/helpRequests.html"){
   document.addEventListener('DOMContentLoaded', function () {
-    fetch('http://localhost:3001/getAllReq')
+    fetch('http://localhost:3000/getAllReq')
     .then(response => response.json())
     .then(data => loadReq(data['data']));
     
@@ -454,7 +454,7 @@ if(window.location.pathname === "/Client/helpRequests.html"){
   {
     document.addEventListener('DOMContentLoaded', function () 
     {
-      fetch('http://localhost:3001/getAllDonat')
+      fetch('http://localhost:3000/getAllDonat')
       .then(response => response.json())
       .then(data => loadDon(data['data']));
     });
@@ -503,7 +503,7 @@ if(window.location.pathname === "/Client/helpRequests.html"){
   {
     document.addEventListener('DOMContentLoaded', function () 
     {
-      fetch('http://localhost:3001/getAllTypes')
+      fetch('http://localhost:3000/getAllTypes')
       .then(response => response.json())
       .then(data => loadType(data['data']));
     });
@@ -530,7 +530,7 @@ if(window.location.pathname === "/Client/helpRequests.html"){
     // document.getElementById('D_cnic').innerHTML = "";
     document.getElementById('D_amount').value= "";
     document.getElementById('R_amount').value= "";
-    fetch('http://localhost:3001/DonorList/' + type, {
+    fetch('http://localhost:3000/DonorList/' + type, {
        method: 'GET'
       })
     .then(response => response.json())
@@ -564,7 +564,7 @@ if(window.location.pathname === "/Client/helpRequests.html"){
     var Dcnic = document.getElementById('D_cnic').value;
     var type = document.getElementById('type_id').value;
     // console.log(type, Dcnic);
-    fetch('http://localhost:3001/DonorAmount/' + Dcnic, {
+    fetch('http://localhost:3000/DonorAmount/' + Dcnic, {
        method: 'GET'
       })
     .then(response => response.json())
@@ -582,7 +582,7 @@ if(window.location.pathname === "/Client/helpRequests.html"){
   {
     var type = document.getElementById('type_id').value;
     // console.log(type)
-    fetch('http://localhost:3001/SeekerList/' + type, {
+    fetch('http://localhost:3000/SeekerList/' + type, {
        method: 'GET'
       })
     .then(response => response.json())
@@ -616,7 +616,7 @@ if(window.location.pathname === "/Client/helpRequests.html"){
   {
     var cnic = document.getElementById('S_cnic').value;
     // console.log(cnic);
-    fetch('http://localhost:3001/ReqAmount/' + cnic, {
+    fetch('http://localhost:3000/ReqAmount/' + cnic, {
        method: 'GET'
       })
     .then(response => response.json())
@@ -633,3 +633,25 @@ if(window.location.pathname === "/Client/helpRequests.html"){
     });
   }
 
+function alloc_donate()
+{
+  var type = document.getElementById('type_id').value;
+  var  don_cnic = parseInt(document.getElementById('D_cnic').value);
+  var  seek_cnic = parseInt(document.getElementById('S_cnic').value);
+  var  don_amount = parseInt(document.getElementById('D_amount').value);
+  var  req_amount = parseInt(document.getElementById('R_amount').value);
+  fetch('http://localhost:3000/NewMatch/', {
+        headers: {
+            'Content-type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify({ type:type, don_cnic:don_cnic, seek_cnic:seek_cnic, don_amount:don_amount, req_amount:req_amount})
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) 
+        {
+          location.reload();
+        }
+    });
+}

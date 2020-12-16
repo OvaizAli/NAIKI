@@ -1,4 +1,5 @@
 const mysql = require('mysql');
+const config = require('./config.js')
 let instance = null;
 
 const connection = mysql.createConnection({
@@ -8,7 +9,7 @@ const connection = mysql.createConnection({
     database: "naiki",
     //port: "3000"
 });
-
+const confconnection = mysql.createConnection(config);
 connection.connect((err) => {
     if (err) {
         console.log(err.message);
@@ -21,19 +22,19 @@ class DbService {
     static getDbServiceInstance() {
         return instance ? instance : new DbService();
     }
-    
+
     async getSignInDetails() {
         try {
             const response = await new Promise((resolve, reject) => {
-                const query = "SELECT cnic,password FROM sys_user;";
+                const query = "call login()";
 
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
                 })
             });
-            // console.log(response);
-            return response;
+            console.log(response[0]);
+            return response[0];
         } catch (error) {
             console.log(error);
         }
@@ -109,18 +110,13 @@ class DbService {
                             if(err) throw err;
                             uid = result[0].user_id;
                             console.log("uid"+uid);
-                            let sql = `insert into seeker (user_id) value (${uid})`;
-                            connection.query(sql, function(err,result)
+                            let sql = `call new_donor_seeker(?)`;
+                            connection.query(sql,uid, function(err,result)
                             {
-                                if(err) throw err;
-                                sql = `insert into donor (user_id) value (${uid})`;
-                                connection.query(sql, function(err,result)
-                                {
                                     if(err) throw err;
                                     resolve(result.insertId);
+                                    console.log(result.insertId);
                                     return result.insertId;
-                                });
-                        //return result.insertId;
                             });
                          })
                     });

@@ -178,7 +178,7 @@ jQuery(document).ready(function($){
 }
 
 function validate(data){
-  // console.log(data);
+  console.log(data);
   var valFlag = 0;
   var userCnic = parseInt(document.getElementById('signin-cnic').value);
   var userPass = (document.getElementById('signin-password').value);
@@ -405,7 +405,6 @@ function loadCitie(data)
     cList.appendChild(new_city);
   });
 }
-
 
 // ------------------------------------------------------ Help Seeker -----------------------------------------------------
 function reqhelp() {

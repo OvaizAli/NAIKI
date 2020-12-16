@@ -268,6 +268,29 @@ function NgoEmpCheck(data)
 //     });
 //   }
 // }
+var cityList = document.getElementById('signup-location');
+if(window.location.pathname === "/index.html")
+{
+  document.addEventListener('DOMContentLoaded', function () 
+  {
+    fetch('http://localhost:3000/getAllCities')
+    .then(response => response.json())
+    .then(data => loadCity(data['data']));
+  });
+}
+
+function loadCity(data)
+{
+  console.log(data);
+  data.forEach(function({LocName})
+  {
+    console.log(LocName);
+    var new_city = document.createElement('option');
+    var newcity = document.createTextNode(LocName);
+    new_city.appendChild(newcity);
+    cityList.appendChild(new_city);
+  });
+}
 
 function signup() {
   fetch('http://localhost:3000/Signup/', {
@@ -358,6 +381,32 @@ function loadDType(data)
     tList.appendChild(new_type);
   });
 }
+
+var cList = document.getElementById('validationDefault03');
+if(window.location.pathname === "/Client/Donor.html" || window.location.pathname === "/Client/helpSeeker.html")
+{
+  document.addEventListener('DOMContentLoaded', function () 
+  {
+    fetch('http://localhost:3000/getAllCities')
+    .then(response => response.json())
+    .then(data => loadCitie(data['data']));
+  });
+}
+
+function loadCitie(data)
+{
+  console.log(data);
+  data.forEach(function({LocName})
+  {
+    console.log(LocName);
+    var new_city = document.createElement('option');
+    var newcity = document.createTextNode(LocName);
+    new_city.appendChild(newcity);
+    cList.appendChild(new_city);
+  });
+}
+
+
 // ------------------------------------------------------ Help Seeker -----------------------------------------------------
 function reqhelp() {
   console.log(window.location.pathname);
@@ -655,3 +704,29 @@ function alloc_donate()
         }
     });
 }
+
+var TypeList = document.getElementById('type_id');
+  if(window.location.pathname === "/Client/allocateDonations.html")
+  {
+    document.addEventListener('DOMContentLoaded', function () 
+    {
+      fetch('http://localhost:3000/getAllTypes')
+      .then(response => response.json())
+      .then(data => loadType(data['data']));
+    });
+  }
+
+  function loadType(data)
+  {
+    // console.log(data);
+    data.forEach(function({type_name}){
+      // console.log(type_name);
+      // var newDon = document.createElement('option');
+  
+      var new_type = document.createElement('option');
+      var newType = document.createTextNode(type_name);
+      new_type.appendChild(newType);
+
+      TypeList.appendChild(new_type);
+    });
+  }

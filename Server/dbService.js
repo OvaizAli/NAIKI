@@ -21,7 +21,7 @@ class DbService {
     static getDbServiceInstance() {
         return instance ? instance : new DbService();
     }
-
+    
     async getSignInDetails() {
         try {
             const response = await new Promise((resolve, reject) => {
@@ -309,6 +309,23 @@ async getAllTypeData() {
     try {
         const response = await new Promise((resolve, reject) => {
             const query = "select type_name from donat_type;";
+
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        // console.log(response);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async getAllCityData() {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = "select LocName from location;";
 
             connection.query(query, (err, results) => {
                 if (err) reject(new Error(err.message));

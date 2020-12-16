@@ -160,6 +160,16 @@ app.get('/getAllTypes', (request, response) => {
   .catch(err => console.log(err));
 });
 
+app.get('/getAllCities', (request, response) => {
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.getAllCityData();
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
 app.get('/DonorList/:type', (request, response)=>{
   const { type } = request.params;
   // console.log("DL: ", type);

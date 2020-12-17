@@ -5,11 +5,11 @@ let instance = null;
 const connection = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "ma325ksa",
+    password: "Ovaizali110*",
     database: "naiki",
-    //port: "3000"
+    port: "3000"
 });
-const confconnection = mysql.createConnection(config);
+// const confconnection = mysql.createConnection(config);
 connection.connect((err) => {
     if (err) {
         console.log(err.message);
@@ -22,7 +22,23 @@ class DbService {
     static getDbServiceInstance() {
         return instance ? instance : new DbService();
     }
-
+    
+    async getUserName(cnic) {
+        try {
+            // console.log(cnic);
+            const response = await new Promise((resolve, reject) => {
+                const query = `select name from sys_user where cnic = ?`;
+                connection.query(query, cnic, (err, results) => {
+                    if (err) reject(new Error(err.message));
+                    resolve(results);
+                })
+            });
+            // console.log(response);
+            return response;
+        } catch (error) {
+            console.log(error);
+        }
+    }
     async getSignInDetails() {
         try {
             const response = await new Promise((resolve, reject) => {
@@ -33,7 +49,7 @@ class DbService {
                     resolve(results);
                 })
             });
-            console.log(response[0]);
+            // console.log(response[0]);
             return response[0];
         } catch (error) {
             console.log(error);
@@ -461,83 +477,6 @@ async insertMatch(type, don_cnic, seek_cnic, don_amount, req_amount){
         console.log(error);
     }
 }
-// //     async deleteAllData() {
-// //         try {
-// //             const response = await new Promise((resolve, reject) => {
-// //                 const query = "DELETE FROM todos;";
-
-// //                 connection.query(query, (err, results) => {
-// //                     if (err) reject(new Error(err.message));
-// //                     resolve(results);
-// //                 })
-// //             });
-// //             // console.log(response);
-// //             return;
-// //         } catch (error) {
-// //             console.log(error);
-// //         }
-// //     }
-
-// //     async insertNewName(todo_item) {
-// //         try {
-// //             // const dateAdded = new Date();
-// //             const insertId = await new Promise((resolve, reject) => {
-// //                 const query = "INSERT INTO todos (todo_item) VALUES (?);";
-
-// //                 connection.query(query, [todo_item] , (err, result) => {
-// //                     if (err) reject(new Error(err.message));
-// //                     resolve(result.insertId);
-// //                 })
-// //             });
-// //             return {
-// //                 todo_id : insertId,
-// //                 todo_item : todo_item
-// //             };
-// //         } catch (error) {
-// //             console.log(error);
-// //         }
-// //     }
-
-
-
-// //     async deleteRowById(todo_id) {
-// //         try {
-// //             todo_id = parseInt(todo_id, 10); 
-// //             const response = await new Promise((resolve, reject) => {
-// //                 const query = "DELETE FROM todos WHERE todo_id = ?";
-    
-// //                 connection.query(query, [todo_id] , (err, result) => {
-// //                     if (err) reject(new Error(err.message));
-// //                     // resolve(result.affectedRows);
-// //                 })
-// //             });
-    
-// //             return response === 1 ? true : false;
-// //         } catch (error) {
-// //             console.log(error);
-// //             return false;
-// //         }
-// //     }
-
-//     // async checkSignin(cnic, password) {
-//     //     try {
-//     //         // todo_id = parseInt(todo_id, 10); 
-//     //         // const response = await new Promise((resolve, reject) => {
-//     //         //     const query = "UPDATE todos SET todo_item = ? WHERE todo_id = ?";
-    
-//     //         //     connection.query(query, [todo_item, todo_id] , (err, result) => {
-//     //         //         if (err) reject(new Error(err.message));
-//     //         //         resolve(result.affectedRows);
-//     //         //     })
-//     //         // });
-    
-//     //         return response === 1 ? true : false;
-//     //     } catch (error) {
-//     //         console.log(error);
-//     //         return false;
-//     //     }
-//     // }
-
  }
 
 module.exports = DbService;

@@ -1,33 +1,58 @@
-const express = require('express');
+const express = require("express") 
+const session = require('express-session') 
 const app = express();
 const cors = require('cors');
-const passport = require('passport');
-const flash = require('express-flash');
-const session = require('express-session');
-const methodOverride = require('method-override');
+const path = require('path');
 const dbService = require('./dbService');
-const { response } = require('express');
-
-app.engine('html', require('ejs').renderFile);
+// app.engine('html', require('ejs').renderFile);
 app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended : false }));
+app.use(session({secret: 'ssshhhhh',saveUninitialized: true,resave: true}));
+var sess;
+
 // app.use(flash())
 //   app.use(session({
 //     secret: process.env.SESSION_SECRET,
 //     resave: false,
 //     saveUninitialized: false
 //   }))
-  app.use(passport.initialize())
-  app.use(passport.session())
-  app.use(methodOverride('_method'))
+  // app.use(passport.initialize())
+  // app.use(passport.session())
+  // app.use(methodOverride('_method'))
 
+  app.get("/SetCnic/:cnic", function(request, response){ 
+    const { cnic } = request.params;
+    // console.log(cnic);
+    sess = request.session;
+    sess.cnic = request.params;
+    const db = dbService.getDbServiceInstance();
+    if(sess.cnic) {
+      console.log(sess.cnic);
+      // return response.redirect(__dirname + '/index3.html');
+      // response.sendFile(__dirname + '/index.html');
+      const result = db.getUserName(cnic);
 
-  // app.get('/', (req, res) => {
-  //   res.render('./index.html')
-  // })
+    result
+        .then(data => response.json({data : data}))
+        .catch(err => console.log(err));
+  }}) 
 
-
+app.get('/Logout', function(request, response){ 
+  // sess = request.session;
+  console.log(sess.cnic);
+    request.session.destroy((err) => {
+        if(err) {
+            return console.log(err);
+        }
+    });
+    // const db = dbService.getDbServiceInstance();
+    // const result = db.getDonationData();
+      
+    // result
+    //     .then(data => response.json({data : data}))
+    //     .catch(err => console.log(err));
+      }) 
 
 app.get('/Signin', (request, response) => {
         const db = dbService.getDbServiceInstance();
@@ -220,77 +245,8 @@ app.post('/NewMatch', (request, response)=>{
   .then(data => response.json({data : data}))
   .catch(err => console.log(err));
 });
-// app.post('/s_d_create', (request, response) => {
-//   const { cnic } = request.body;
-//   const db = dbService.getDbServiceInstance();
-  
-//   console.log( cnic );
-
-//   const result = db.createseekerdonor(cnic);
-
-//   result
-//   .then(data => response.json({ data: data}))
-//   .catch(err => console.log(err));
-// });
-// // read
-// app.get('/getAll', (request, response) => {
-//     const db = dbService.getDbServiceInstance();
-
-//     const result = db.getAllData();
-    
-//     result
-//     // .then(data => console.log(data))
-//     .then(data => response.json({data : data}))
-//     .catch(err => console.log(err));
-//     // console.log('Hello');
-// });
-
-// // update
-// app.patch('/update', (request, response) => {
-//     const { todo_id, todo_item } = request.body;
-//     const db = dbService.getDbServiceInstance();
-
-//     const result = db.updateNameById(todo_id, todo_item);
-    
-//     result
-//     .then(data => response.json({success : data}))
-//     .catch(err => console.log(err));
-// });
-
-// // delete
-// app.delete('/delete/:todo_id', (request, response) => {
-//     const { todo_id } = request.params;
-//     const db = dbService.getDbServiceInstance();
-
-//     const result = db.deleteRowById(todo_id);
-    
-//     result
-//     .then(data => response.json({success : data}))
-//     .catch(err => console.log(err));
-// });
-
-// // delete all
-// app.get('/deleteAll', (request, response) => {
-//     const db = dbService.getDbServiceInstance();
-
-//     const result = db.deleteAllData();
-    
-//     result
-//     // .then(data => console.log(data))
-//     .catch(err => console.log(err));
-//     // console.log('Hello');
-// });
-
-app.use(session({
-  secret:'donation_portal',
-  resave: false,
-  saveUninitialized: false,
-  cookie: {
-      maxAge: 60 * 1000 * 30
-  }
-}));
 
 
-app.listen(3000, () => console.log('app is running'));
+app.listen(3001, () => console.log('app is running'));
 
 

@@ -30,22 +30,22 @@
     <div class="collapse navbar-collapse" id="navbarText">
       <ul class="navbar-nav mr-auto">
         <li class="nav-item active">
-          <a class="btn btn-light nav-btn nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+          <a class="btn btn-light nav-btn nav-link" href="../index2.html">Home <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item">
-          <a class="btn btn-light nav-btn nav-link" href="#">About</a>
+          <a class="btn btn-light nav-btn nav-link" href="#aboutus">About</a>
         </li>
         <li class="nav-item dropdown">
           <a class="btn btn-light nav-btn nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             NAIKI Services
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Donations (Sadqah)</a>
-            <a class="dropdown-item" href="#">Welfare</a>
-            <a class="dropdown-item" href="#">Medical</a>
-            <a class="dropdown-item" href="#">Dastarkhwan/Food Collection</a>
-            <a class="dropdown-item" href="#">Education</a>
-            <a class="dropdown-item" href="#">Approach Volunteers</a>
+            <a class="dropdown-item" href="#services">Donations (Sadqah)</a>
+            <a class="dropdown-item" href="#services">Welfare</a>
+            <a class="dropdown-item" href="#services">Medical</a>
+            <a class="dropdown-item" href="#services">Dastarkhwan/Food Collection</a>
+            <a class="dropdown-item" href="#services">Education</a>
+            <a class="dropdown-item" href="#services">Approach Volunteers</a>
           </div>
         </li>
         <li class="nav-item dropdown">
@@ -53,153 +53,33 @@
             Donation
           </a>
           <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Donation (Sadqa)</a>
-            <a class="dropdown-item" href="#">Other Donations</a>
-            <a class="dropdown-item" href="#">COVID 19 Effecties</a>
+            <a class="dropdown-item" href="#services">Donation (Sadqa)</a>
+            <a class="dropdown-item" href="#services">Other Donations</a>
+            <a class="dropdown-item" href="#services">COVID 19 Effecties</a>
           </div>
         </li>
         <li class="nav-item">
-          <a class="btn btn-light nav-btn nav-link" href="#">Contact Us</a>
+          <a class="btn btn-light nav-btn nav-link" href="#contactus">Contact Us</a>
         </li>
       </ul>
       <span class="navbar-text">
         <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
           <li class="nav-item inupModal">
             
-            <a type="button" class="nav-link" class="cd-signin" href="#0">
-              <i class="fa fa-user" aria-hidden="true" style="color: white"></i> Sign in / Sign up <span class="sr-only"></span>
+            <a type="button" class="nav-link" onclick="logout()" class="cd-signin" href="#0">
+              <i class="fa fa-user"  style="color: white"></i> Logout<span class="sr-only"></span>
             </a>
   
           </li>
-          <li class="nav-item active">
-              <button class="btn btn-warning my-2 my-sm-0" type="submit">Donate Now</button>
+          <li class="nav-item active" >
+              <button class="btn btn-warning my-2 my-sm-0" onclick="donation()" id="nameText" type="button" >Donate Now</button>
           </li>
         </ul>
       </span>
     </div>
   </nav>
-  <!-- <nav class="navbar navbar-expand-lg">
-    <a class="navbar-brand" href="#">
-      <img src="./images/Logo.png" alt="NAIKI-Logo" class="logo">
-      
-    </a>
-    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarTogglerDemo02" aria-controls="navbarTogglerDemo02" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="" role="button" ><i class="fa fa-bars" aria-hidden="true" style="color:#e6e6ff"></i></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="navbarTogglerDemo02">
-      <ul class="navbar-nav mr-auto mt-2 mt-lg-0 ml-auto">
-        <form class="form-inline my-2 my-lg-0">
-            <input type="text" name="search" placeholder="&#xF002; Search..." style="font-family:Arial, FontAwesome" />
-        </form>
-        <li class="nav-item">
-          
-          <a type="button" class="nav-link" class="cd-signin" href="#0">
-            <i class="fa fa-user" aria-hidden="true" style="color:#e6e6ff"></i> Sign in / Sign up <span class="sr-only"></span>
-          </a>
-
-        </li>
-        <li class="nav-item active">
-            <button class="btn btn-warning my-2 my-sm-0" type="submit">Donate Now</button>
-        </li>
-      </ul>
-    </div>
-  </nav> -->
 
   <br>
-
-<!-------------------------------------------------------------- Login/Signup Modal ------------------------------------------------------------>
-
-  <div class="cd-user-modal"> <!-- this is the entire modal form, including the background -->
-    <div class="cd-user-modal-container"> <!-- this is the container wrapper -->
-    <ul class="cd-switcher">
-    <li><a href="#0">Sign In</a></li>
-    <li><a href="#0">Sign Up</a></li>
-    </ul>
-    
-    <div id="cd-login"> <!-- log in form -->
-    <form class="cd-form">
-    <p class="fieldset">
-    <label class="image-replace cd-cnic" for="signin-cnic">CNIC No.</label>
-    <input class="full-width has-padding has-border" id="signin-cnic" type="text" placeholder="CNIC No.">
-    <span class="cd-error-message">Error message here!</span>
-    </p>
-    
-    <p class="fieldset">
-    <label class="image-replace cd-password" for="signin-password">Password</label>
-    <input class="full-width has-padding has-border" id="signin-password" type="text"  placeholder="Password">
-    <a href="#0" class="hide-password">Hide</a>
-    <span class="cd-error-message">Error message here!</span>
-    </p>
-    
-    <p class="fieldset">
-    <input type="checkbox" id="remember-me" checked>
-    <label for="remember-me">Remember me</label>
-    </p>
-    
-    <p class="fieldset">
-    <input class="full-width" type="submit" value="Login" onclick="signin()">
-    </p>
-    </form>
-    
-    <p class="cd-form-bottom-message"><a href="#0">Forgot your password?</a></p>
-    <!-- <a href="#0" class="cd-close-form">Close</a> -->
-    </div> <!-- cd-login -->
-    
-    <div id="cd-signup"> <!-- sign up form -->
-    <form class="cd-form">
-    <p class="fieldset">
-    <label class="image-replace cd-username" for="signup-username">Username</label>
-    <input class="full-width has-padding has-border" id="signup-username" type="text" placeholder="Username">
-    <span class="cd-error-message">Error message here!</span>
-    </p>
-    
-    <p class="fieldset">
-    <label class="image-replace cd-email" for="signup-email">E-mail</label>
-    <input class="full-width has-padding has-border" id="signup-email" type="email" placeholder="E-mail">
-    <span class="cd-error-message">Error message here!</span>
-    </p>
-    
-    <p class="fieldset">
-    <label class="image-replace cd-password" for="signup-password">Password</label>
-    <input class="full-width has-padding has-border" id="signup-password" type="text"  placeholder="Password">
-    <a href="#0" class="hide-password">Hide</a>
-    <span class="cd-error-message">Error message here!</span>
-    </p>
-    
-    <p class="fieldset">
-    <input type="checkbox" id="accept-terms">
-    <label for="accept-terms">I agree to the <a href="#0">Terms</a></label>
-    </p>
-    
-    <p class="fieldset">
-    <input class="full-width has-padding" type="submit" value="Create account">
-    </p>
-    </form>
-    
-    <!-- <a href="#0" class="cd-close-form">Close</a> -->
-    </div> <!-- cd-signup -->
-    
-    <div id="cd-reset-password"> <!-- reset password form -->
-    <p class="cd-form-message">Lost your password? Please enter your email address. You will receive a link to create a new password.</p>
-    
-    <form class="cd-form">
-    <p class="fieldset">
-    <label class="image-replace cd-email" for="reset-email">E-mail</label>
-    <input class="full-width has-padding has-border" id="reset-email" type="email" placeholder="E-mail">
-    <span class="cd-error-message">Error message here!</span>
-    </p>
-    
-    <p class="fieldset">
-    <input class="full-width has-padding" type="submit" value="Reset password">
-    </p>
-    </form>
-    
-    <p class="cd-form-bottom-message"><a href="#0">Back to log-in</a></p>
-    </div> <!-- cd-reset-password -->
-    <a href="#0" class="cd-close-form">Close</a>
-    </div> <!-- cd-user-modal-container -->
-    </div> <!-- cd-user-modal -->
 
 <!------------------------------------------------------------------- Donations Received -------------------------------------------------------------->
 
@@ -227,9 +107,9 @@
  </div>
 
 <!------------------------------------------------------------------- Footer ------------------------------------------------------------------->
-
+<p id="contactus" ></p>
 <button id="scrollToTopBtn"><img src="./Assets/images/scrollup.png" alt=""></button>
-  <footer id="footer contactus" class="footer-1 ">
+  <footer id="footer" class="footer-1 ">
       <div class="main-footer widgets-dark typo-light ">
           <div class="container ">
               <div class="row ">
@@ -247,7 +127,7 @@
                           <ul class="thumbnail-widget ">
                               <li>
                                   <div class="thumb-content ">
-                                      <a href="/index.html">Home</a>
+                                      <a href="../index2.html">Home</a>
                                   </div>
                               </li>
                               <li>

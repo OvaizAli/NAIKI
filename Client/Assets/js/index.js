@@ -198,11 +198,11 @@ function validate(data){
     funcSession(userCnic); 
     if(donor.checked==true)
     {
-      window.location.assign("Client/Donor.html");
+      window.location.assign("Client/mainDonor.html");
     }
     if(seeker.checked==true)
     {
-      window.location.assign("Client/helpSeeker.html");
+      window.location.assign("Client/mainSeeker.html");
     //   fetch('http://localhost:3001/Seekcheck/' , {
     //     method: 'GET'
     // })

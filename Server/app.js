@@ -40,7 +40,7 @@ var sess;
 
 app.get('/Logout', function(request, response){ 
   // sess = request.session;
-  console.log(sess.cnic);
+  // console.log(sess.cnic);
     request.session.destroy((err) => {
         if(err) {
             return console.log(err);
@@ -246,6 +246,33 @@ app.post('/NewMatch', (request, response)=>{
   .catch(err => console.log(err));
 });
 
+app.get('/getAllUserDonat', (request, response) => {
+  // sess = request.session;
+  var dcnic;
+  dcnic = sess.cnic;
+  console.log(dcnic.cnic);
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.getAllUserDonatData(dcnic.cnic);
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
+app.get('/getAllUserReq', (request, response) => {
+  // sess = request.session;
+  var scnic;
+  scnic = sess.cnic;
+  console.log(scnic.cnic);
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.getAllUserReqData(scnic.cnic);
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
 
 app.listen(3001, () => console.log('app is running'));
 

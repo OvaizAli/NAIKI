@@ -1,5 +1,7 @@
 // const { authenticate } = require("passport");
 
+// const { session } = require("passport");
+
 
 // ------------------------------------------------------------------ Scroll To-Top Button ------------------------------------------------------
 var scrollToTopBtn = document.getElementById("scrollToTopBtn");
@@ -749,3 +751,101 @@ var TypeList = document.getElementById('type_id');
       TypeList.appendChild(new_type);
     });
   }
+
+
+  var donList = document.getElementById('DonationList');
+  if(window.location.pathname === "/Client/viewMyDonations.html")
+  {
+    document.addEventListener('DOMContentLoaded', function () 
+    {
+      fetch('http://localhost:3001/getAllUserDonat' , {
+       method: 'GET'
+      })
+    .then(response => response.json())
+    .then(data => loadUDon(data['data']));
+    });
+  }
+  
+  function loadUDon(data)
+  {
+    // console.log(data);
+    data.forEach(function({donat_id, name, type_name, quantity, contact}){
+      // console.log(donat_id, name, type_name, quantity, contact);
+      var newDon = document.createElement('tr');
+  
+      var new_id = document.createElement('td');
+      var newId = document.createTextNode(donat_id);
+      new_id.appendChild(newId);
+
+      var new_name = document.createElement('td');
+      var newName = document.createTextNode(name);
+      new_name.appendChild(newName);
+  
+      var new_type = document.createElement('td');
+      var newType = document.createTextNode(type_name);
+      new_type.appendChild(newType);
+  
+      var new_quantity = document.createElement('td');
+      var newQuantity = document.createTextNode(quantity);
+      new_quantity.appendChild(newQuantity);
+  
+      var new_contact = document.createElement('td');
+      var newContact = document.createTextNode(contact);
+      new_contact.appendChild(newContact);
+      
+      newDon.appendChild(new_id);
+      newDon.appendChild(new_name);
+      newDon.appendChild(new_type);
+      newDon.appendChild(new_quantity);
+      newDon.appendChild(new_contact);
+      donList.appendChild(newDon);
+    });
+  }
+
+  var rList = document.getElementById('helpReqList_');
+if(window.location.pathname === "/Client/viewMyHelp.html"){
+  document.addEventListener('DOMContentLoaded', function () {
+    fetch('http://localhost:3001/getAllUserReq' , {
+       method: 'GET'
+      })
+    .then(response => response.json())
+    .then(data => loadUserReq(data['data']));
+  });
+  }
+  
+  function loadUserReq(data)
+  {
+    // console.log(data);
+    data.forEach(function({don_id, name, type_name, quantity, contact}){
+      // console.log(don_id, name, type_name, quantity, contact);
+      var newReq = document.createElement('tr');
+  
+      var new_name = document.createElement('td');
+      var newName = document.createTextNode(name);
+      new_name.appendChild(newName);
+  
+      var new_type = document.createElement('td');
+      var newType = document.createTextNode(type_name);
+      new_type.appendChild(newType);
+  
+      var new_quantity = document.createElement('td');
+      var newQuantity = document.createTextNode(quantity);
+      new_quantity.appendChild(newQuantity);
+  
+      var new_contact = document.createElement('td');
+      var newContact = document.createTextNode(contact);
+      new_contact.appendChild(newContact);
+  
+      var new_id = document.createElement('td');
+      var newId = document.createTextNode(don_id);
+      new_id.appendChild(newId);
+      
+      newReq.appendChild(new_id);
+      newReq.appendChild(new_name);
+      newReq.appendChild(new_type);
+      newReq.appendChild(new_quantity);
+      newReq.appendChild(new_contact);
+      rList.appendChild(newReq);
+    });
+  }
+

@@ -5,9 +5,9 @@ let instance = null;
 const connection = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "Ovaizali110*",
+    password: "ma325ksa",
     database: "naiki",
-    port: "3000"
+    // port: "3000"
 });
 // const confconnection = mysql.createConnection(config);
 connection.connect((err) => {
@@ -286,7 +286,7 @@ async getNgoEmpDetails() {
 async getAllReqData() {
     try {
         const response = await new Promise((resolve, reject) => {
-            const query = "select req.don_id, u.name, t.type_name, req.quantity, u.contact from donation_req req join sys_user u join donat_type t join seeker s where s.idSeeker = req.seeker_id and t.type_id = req.type_id and s.user_id = u.user_id;";
+            const query = "select * from allrequests;";
 
             connection.query(query, (err, results) => {
                 if (err) reject(new Error(err.message));
@@ -303,7 +303,7 @@ async getAllReqData() {
 async getAllDonatData() {
     try {
         const response = await new Promise((resolve, reject) => {
-            const query = "select don.donat_id, u.name, t.type_name, don.quantity, u.contact from donation don join sys_user u join donat_type t join donor d where d.idDonor = don.donor_id and t.type_id = don.type_id and d.user_id = u.user_id; ";
+            const query = "select * from alldonations; ";
 
             connection.query(query, (err, results) => {
                 if (err) reject(new Error(err.message));
@@ -359,7 +359,7 @@ async dispDonor(type) {
                 if(err) throw err;
                 var typ = results[0].type_id;
                 // console.log(typ);
-                const query = `select distinct u.cnic from sys_user u join donor d join donation don where u.user_id = d.user_id and d.idDonor = don.donor_id and don.type_id = ${typ};`;
+                const query = `select distinct u.cnic from sys_user u join donor d join donation don where u.user_id = d.user_id and d.idDonor = don.donor_id and don.type_id = ${typ} and don.quantity>0;`;
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
@@ -381,7 +381,7 @@ async dispSeeker(type,dcnic) {
                 if(err) throw err;
                 typ = results[0].type_id;
                 console.log(typ);
-                const query = `select  distinct u.cnic from sys_user u join seeker s join donation_req req where u.user_id = s.user_id and s.idSeeker = req.seeker_id and req.type_id = ${typ} and u.cnic <> ${dcnic};`;
+                const query = `select  distinct u.cnic from sys_user u join seeker s join donation_req req where u.user_id = s.user_id and s.idSeeker = req.seeker_id and req.type_id = ${typ} and u.cnic <> ${dcnic} and req.quantity>0;`;
                 connection.query(query, (err, results) => {
                     if (err) reject(new Error(err.message));
                     resolve(results);
@@ -477,6 +477,42 @@ async insertMatch(type, don_cnic, seek_cnic, don_amount, req_amount){
         console.log(error);
     }
 }
- }
+
+async getAllUserDonatData(cnic) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = `call user_donation(?)`;
+
+            connection.query(query,cnic, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        console.log(response[0]);
+        return response[0];
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async getAllUserReqData(cnic) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = `call user_request(?)`;
+
+            connection.query(query,cnic, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        console.log(response[0]);
+        return response[0];
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+}
+
 
 module.exports = DbService;

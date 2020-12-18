@@ -18,6 +18,38 @@ USE `naiki`;
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
+-- Temporary view structure for view `alldonations`
+--
+
+DROP TABLE IF EXISTS `alldonations`;
+/*!50001 DROP VIEW IF EXISTS `alldonations`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `alldonations` AS SELECT 
+ 1 AS `donat_id`,
+ 1 AS `name`,
+ 1 AS `type_name`,
+ 1 AS `quantity`,
+ 1 AS `contact`*/;
+SET character_set_client = @saved_cs_client;
+
+--
+-- Temporary view structure for view `allrequests`
+--
+
+DROP TABLE IF EXISTS `allrequests`;
+/*!50001 DROP VIEW IF EXISTS `allrequests`*/;
+SET @saved_cs_client     = @@character_set_client;
+/*!50503 SET character_set_client = utf8mb4 */;
+/*!50001 CREATE VIEW `allrequests` AS SELECT 
+ 1 AS `don_id`,
+ 1 AS `name`,
+ 1 AS `type_name`,
+ 1 AS `quantity`,
+ 1 AS `contact`*/;
+SET character_set_client = @saved_cs_client;
+
+--
 -- Table structure for table `don_details`
 --
 
@@ -395,6 +427,84 @@ DELIMITER ;
 /*!50003 SET character_set_client  = @saved_cs_client */ ;
 /*!50003 SET character_set_results = @saved_cs_results */ ;
 /*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `user_donation` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `user_donation`(IN dcnic BIGINT)
+BEGIN
+select don.donat_id, u.name, t.type_name, don.quantity, u.contact 
+from donation don join sys_user u join donat_type t join donor d 
+where d.idDonor = don.donor_id and t.type_id = don.type_id and d.user_id = u.user_id and u.cnic = dcnic; 
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+/*!50003 DROP PROCEDURE IF EXISTS `user_request` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `user_request`(IN scnic BIGINT)
+BEGIN
+select req.don_id, u.name, t.type_name, req.quantity, u.contact 
+from donation_req req join sys_user u join donat_type t join seeker s 
+where s.idSeeker = req.seeker_id and t.type_id = req.type_id and s.user_id = u.user_id and u.cnic = scnic;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
+
+--
+-- Final view structure for view `alldonations`
+--
+
+/*!50001 DROP VIEW IF EXISTS `alldonations`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `alldonations` AS select `don`.`donat_id` AS `donat_id`,`u`.`name` AS `name`,`t`.`type_name` AS `type_name`,`don`.`quantity` AS `quantity`,`u`.`contact` AS `contact` from (((`donation` `don` join `sys_user` `u`) join `donat_type` `t`) join `donor` `d`) where ((`d`.`idDonor` = `don`.`donor_id`) and (`t`.`type_id` = `don`.`type_id`) and (`d`.`user_id` = `u`.`user_id`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
+
+--
+-- Final view structure for view `allrequests`
+--
+
+/*!50001 DROP VIEW IF EXISTS `allrequests`*/;
+/*!50001 SET @saved_cs_client          = @@character_set_client */;
+/*!50001 SET @saved_cs_results         = @@character_set_results */;
+/*!50001 SET @saved_col_connection     = @@collation_connection */;
+/*!50001 SET character_set_client      = utf8mb4 */;
+/*!50001 SET character_set_results     = utf8mb4 */;
+/*!50001 SET collation_connection      = utf8mb4_0900_ai_ci */;
+/*!50001 CREATE ALGORITHM=UNDEFINED */
+/*!50013 DEFINER=`root`@`localhost` SQL SECURITY DEFINER */
+/*!50001 VIEW `allrequests` AS select `req`.`don_id` AS `don_id`,`u`.`name` AS `name`,`t`.`type_name` AS `type_name`,`req`.`quantity` AS `quantity`,`u`.`contact` AS `contact` from (((`donation_req` `req` join `sys_user` `u`) join `donat_type` `t`) join `seeker` `s`) where ((`s`.`idSeeker` = `req`.`seeker_id`) and (`t`.`type_id` = `req`.`type_id`) and (`s`.`user_id` = `u`.`user_id`)) */;
+/*!50001 SET character_set_client      = @saved_cs_client */;
+/*!50001 SET character_set_results     = @saved_cs_results */;
+/*!50001 SET collation_connection      = @saved_col_connection */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
@@ -405,4 +515,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-16 21:32:28
+-- Dump completed on 2020-12-18 11:21:42

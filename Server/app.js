@@ -274,6 +274,34 @@ app.get('/getAllUserReq', (request, response) => {
   .catch(err => console.log(err));
 });
 
+app.get('/deleteDon', (request, response) => {
+  // sess = request.session;
+  var dcnic;
+  dcnic = sess.cnic;
+  console.log(dcnic.cnic);
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.deleteDonation(dcnic.cnic);
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
+app.get('/deleteReq', (request, response) => {
+  // sess = request.session;
+  var scnic;
+  scnic = sess.cnic;
+  console.log(scnic.cnic);
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.deleteRequest(scnic.cnic);
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
 app.listen(3001, () => console.log('app is running'));
 
 

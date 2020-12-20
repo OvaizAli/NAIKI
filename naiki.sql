@@ -204,7 +204,7 @@ CREATE TABLE `donor` (
   UNIQUE KEY `idx_donor_user_id` (`user_id`),
   KEY `u_id_idx` (`user_id`) /*!80000 INVISIBLE */,
   CONSTRAINT `uid` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -213,7 +213,7 @@ CREATE TABLE `donor` (
 
 LOCK TABLES `donor` WRITE;
 /*!40000 ALTER TABLE `donor` DISABLE KEYS */;
-INSERT INTO `donor` VALUES (1,3),(2,4),(3,5),(4,6),(5,7),(9,8),(10,10),(11,12),(12,13),(13,14);
+INSERT INTO `donor` VALUES (1,3),(2,4),(3,5),(4,6),(5,7),(9,8),(10,10),(11,12),(12,13),(13,14),(14,15);
 /*!40000 ALTER TABLE `donor` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -282,7 +282,9 @@ CREATE TABLE `ngo_emp` (
   `NGO_id` int NOT NULL,
   PRIMARY KEY (`idNGO_Emp`),
   KEY `ngo_id_idx` (`NGO_id`),
-  CONSTRAINT `ngo_id` FOREIGN KEY (`NGO_id`) REFERENCES `ngo` (`idNGO`) ON DELETE RESTRICT ON UPDATE RESTRICT
+  KEY `user_id_idx` (`user_id`),
+  CONSTRAINT `ngo_id` FOREIGN KEY (`NGO_id`) REFERENCES `ngo` (`idNGO`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`)
 ) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
@@ -310,7 +312,7 @@ CREATE TABLE `seeker` (
   UNIQUE KEY `idx_seeker_user_id` (`user_id`),
   KEY `u_id_idx` (`user_id`),
   CONSTRAINT `u_id` FOREIGN KEY (`user_id`) REFERENCES `sys_user` (`user_id`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=13 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=14 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -319,7 +321,7 @@ CREATE TABLE `seeker` (
 
 LOCK TABLES `seeker` WRITE;
 /*!40000 ALTER TABLE `seeker` DISABLE KEYS */;
-INSERT INTO `seeker` VALUES (1,3),(4,4),(5,5),(6,6),(8,8),(9,10),(10,12),(11,13),(12,14);
+INSERT INTO `seeker` VALUES (1,3),(4,4),(5,5),(6,6),(8,8),(9,10),(10,12),(11,13),(12,14),(13,15);
 /*!40000 ALTER TABLE `seeker` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -344,7 +346,7 @@ CREATE TABLE `sys_user` (
   UNIQUE KEY `email_UNIQUE` (`email`),
   KEY `loc_id_idx` (`loc_id`),
   CONSTRAINT `loc_id` FOREIGN KEY (`loc_id`) REFERENCES `location` (`idLoc`) ON DELETE RESTRICT ON UPDATE RESTRICT
-) ENGINE=InnoDB AUTO_INCREMENT=15 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -353,7 +355,7 @@ CREATE TABLE `sys_user` (
 
 LOCK TABLES `sys_user` WRITE;
 /*!40000 ALTER TABLE `sys_user` DISABLE KEYS */;
-INSERT INTO `sys_user` VALUES (3,4220106749441,'Zaeem Ahmed','M',3311355294,'ahmedzaeem32@gmail.com',1,'test123'),(4,4220103456785,'Ovaiz Ali','M',3234532567,'ovaizali@gmail.com',2,'12345'),(5,4220106749444,'Sarah','F',3321456842,'sarahfatima99@gmail.com',4,'123456'),(6,4220106545449,'Hassan','M',3065487201,'hassan.khan@gmail.com',1,'hello123'),(7,4220106545045,'Ashad','M',3065487212,'ashad23@gmail.com',6,'testing123'),(8,4220106442045,'Awatif','M',3312354410,'awatifansari@gmail.com',5,'hello123'),(9,4220106749449,'Laiba','F',3112354413,'laibaimran123@gmail.com',1,'test123'),(10,4250169874532,'Danish','M',3215478964,'danishkhan123@gmail.com',5,'123000'),(12,4250135687456,'Hammad','M',3007005575,'hammad123@gmail.com',6,'testing123'),(13,4220156410245,'Shizza Syed','F',3007005542,'ShizzaSyed235@gmail.com',2,'123456'),(14,4220156412354,'Mustaali','M',3007004020,'mustaalihussain@gmail.com',5,'654321');
+INSERT INTO `sys_user` VALUES (3,4220106749441,'Zaeem Ahmed','M',3311355294,'ahmedzaeem32@gmail.com',1,'test123'),(4,4220103456785,'Ovaiz Ali','M',3234532567,'ovaizali@gmail.com',2,'12345'),(5,4220106749444,'Sarah','F',3321456842,'sarahfatima99@gmail.com',4,'123456'),(6,4220106545449,'Hassan','M',3065487201,'hassan.khan@gmail.com',1,'hello123'),(7,4220106545045,'Ashad','M',3065487212,'ashad23@gmail.com',6,'testing123'),(8,4220106442045,'Awatif','M',3312354410,'awatifansari@gmail.com',5,'hello123'),(9,4220106749449,'Laiba','F',3112354413,'laibaimran123@gmail.com',1,'test123'),(10,4250169874532,'Danish','M',3215478964,'danishkhan123@gmail.com',5,'123000'),(12,4250135687456,'Hammad','M',3007005575,'hammad123@gmail.com',6,'testing123'),(13,4220156410245,'Shizza Syed','F',3007005542,'ShizzaSyed235@gmail.com',2,'123456'),(14,4220156412354,'Mustaali','M',3007004020,'mustaalihussain@gmail.com',5,'654321'),(15,4220329874563,'Farah','F',3214568745,'farahkhan23@gmail.com',4,'testing123');
 /*!40000 ALTER TABLE `sys_user` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -388,6 +390,25 @@ UNLOCK TABLES;
 --
 -- Dumping routines for database 'naiki'
 --
+/*!50003 DROP PROCEDURE IF EXISTS `commit_trans` */;
+/*!50003 SET @saved_cs_client      = @@character_set_client */ ;
+/*!50003 SET @saved_cs_results     = @@character_set_results */ ;
+/*!50003 SET @saved_col_connection = @@collation_connection */ ;
+/*!50003 SET character_set_client  = utf8mb4 */ ;
+/*!50003 SET character_set_results = utf8mb4 */ ;
+/*!50003 SET collation_connection  = utf8mb4_0900_ai_ci */ ;
+/*!50003 SET @saved_sql_mode       = @@sql_mode */ ;
+/*!50003 SET sql_mode              = 'STRICT_TRANS_TABLES,NO_ENGINE_SUBSTITUTION' */ ;
+DELIMITER ;;
+CREATE DEFINER=`root`@`localhost` PROCEDURE `commit_trans`()
+BEGIN
+	commit;
+END ;;
+DELIMITER ;
+/*!50003 SET sql_mode              = @saved_sql_mode */ ;
+/*!50003 SET character_set_client  = @saved_cs_client */ ;
+/*!50003 SET character_set_results = @saved_cs_results */ ;
+/*!50003 SET collation_connection  = @saved_col_connection */ ;
 /*!50003 DROP PROCEDURE IF EXISTS `login` */;
 /*!50003 SET @saved_cs_client      = @@character_set_client */ ;
 /*!50003 SET @saved_cs_results     = @@character_set_results */ ;
@@ -515,4 +536,4 @@ DELIMITER ;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2020-12-18 11:21:42
+-- Dump completed on 2020-12-20 14:23:11

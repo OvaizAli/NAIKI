@@ -512,6 +512,92 @@ async getAllUserReqData(cnic) {
     }
 }
 
+async deleteDonation(dcnic) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = `delete from donation where donor_id = (select donor_id from donor where user_id = (select user_id from sys_user where cnic = ${dcnic}))`;
+
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async deleteRequest(scnic) {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = `delete from donation_req where seeker_id = (select seeker_id from seeker where user_id = (select user_id from sys_user where cnic = ${scnic}))`;
+
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async countRequest() {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = `select count(don_id) from donation_req;`;
+
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async countDonation() {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = `select count(donat_id) from donation;`;
+
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+async countMatch() {
+    try {
+        const response = await new Promise((resolve, reject) => {
+            const query = `select count(match_id) from don_details;`;
+
+            connection.query(query, (err, results) => {
+                if (err) reject(new Error(err.message));
+                resolve(results);
+            })
+        });
+        console.log(response);
+        return response;
+    } catch (error) {
+        console.log(error);
+    }
+}
+
+
 }
 
 

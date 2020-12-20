@@ -302,6 +302,36 @@ app.get('/deleteReq', (request, response) => {
   .catch(err => console.log(err));
 });
 
+app.get('/donCount', (request, response) => {
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.countDonation();
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
+app.get('/reqCount', (request, response) => {
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.countRequest();
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
+app.get('/matchCount', (request, response) => {
+  const db = dbService.getDbServiceInstance();
+
+  const result = db.countMatch();
+  
+  result
+  .then(data => response.json({data : data}))
+  .catch(err => console.log(err));
+});
+
 app.listen(3001, () => console.log('app is running'));
 
 

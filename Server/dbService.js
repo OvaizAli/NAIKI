@@ -271,7 +271,7 @@ class DbService {
 async getNgoEmpDetails() {
     try {
         const response = await new Promise((resolve, reject) => {
-            const query = "sselect u.cnic from sys_user u Join ngo_emp e on e.user_id = u.user_id;";
+            const query = "select u.cnic from sys_user u Join ngo_emp e on e.user_id = u.user_id;";
             connection.query(query, (err, results) => {
                 if (err) reject(new Error(err.message));
                 resolve(results);

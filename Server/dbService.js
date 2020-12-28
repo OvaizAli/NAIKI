@@ -5,9 +5,9 @@ let instance = null;
 const connection = mysql.createConnection({
     user: "root",
     host: "localhost",
-    password: "ma325ksa",
+    password: "Ovaizali110*",
     database: "naiki",
-    // port: "3000"
+    port: "3000"
 });
 // const confconnection = mysql.createConnection(config);
 connection.connect((err) => {
